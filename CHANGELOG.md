@@ -6,6 +6,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.7] - 2026-07-04
+
+### Added
+- Config file: any option can be set (one `key value` per line) in
+  `$PUREFETCH_CONFIG`, `~/.config/purefetch/config`, or `/etc/purefetch/config`,
+  so plain `purefetch` reproduces a custom setup. `--config` / `--no-config`.
+- `--logo-exec <CMD>`: use a custom logo from a command's output, regenerated
+  each run (e.g. for status-driven logos).
+
 ## [0.1.6] - 2026-07-04
 
 ### Added
@@ -64,7 +73,8 @@ Initial release.
 - CLI: `--logo`, `--no-logo`, `--no-color`, `--version`, `--help`.
 - Dual-licensed MIT OR Apache-2.0.
 
-[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.1.6...HEAD
+[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.1.7...HEAD
+[0.1.7]: https://github.com/ooonea/purefetch/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/ooonea/purefetch/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/ooonea/purefetch/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/ooonea/purefetch/compare/v0.1.3...v0.1.4

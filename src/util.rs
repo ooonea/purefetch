@@ -50,6 +50,16 @@ pub fn sh(command: &str) -> Option<String> {
         .map(str::to_string)
 }
 
+/// Run a shell command line via `sh -c` and return its full stdout verbatim.
+/// Used to generate a logo dynamically (`--logo-exec`).
+pub fn sh_raw(command: &str) -> Option<String> {
+    let out = Command::new("sh").arg("-c").arg(command).output().ok()?;
+    if !out.status.success() {
+        return None;
+    }
+    Some(String::from_utf8_lossy(&out.stdout).into_owned())
+}
+
 /// Format a byte count with IEC units, e.g. `62.61 GiB`.
 pub fn human_iec(bytes: u64) -> String {
     const UNITS: [&str; 6] = ["B", "KiB", "MiB", "GiB", "TiB", "PiB"];

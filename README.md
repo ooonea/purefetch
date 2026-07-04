@@ -74,8 +74,11 @@ purefetch [OPTIONS]
 
 -l, --logo <NAME>       logo: auto (default), or a distro name (see below)
     --logo-file <PATH>  use a custom logo, read verbatim from a file
+    --logo-exec <CMD>   use a custom logo from a command's output (dynamic)
     --modules <LIST>    comma-separated modules to show ('-' = separator)
     --exec <LABEL:CMD>  add a custom line from a shell command (ref in --modules)
+    --config <PATH>     read options from PATH
+    --no-config         ignore any config file
     --no-logo           do not print any logo
     --no-color          disable ANSI colors
     --no-color-blocks   hide the trailing ANSI color blocks
@@ -91,6 +94,24 @@ Bundled logos: `arch`, `ubuntu`, `fedora`, `debian`, `mint`, `manjaro`, `pop`,
 `elementary`, `zorin`, `artix`, `rocky`, `almalinux`, `centos`, `devuan`, `mx`,
 `garuda`, `tux` (and `none`). `auto` picks one from `/etc/os-release`, falling
 back to `tux`.
+
+## Configuration
+
+Any option can also live in a config file — one `key value` per line — so plain
+`purefetch` reproduces your setup (a login banner and an interactive prompt then
+show the same thing):
+
+```
+# ~/.config/purefetch/config
+logo-exec /home/me/.config/purefetch/gen-logo.sh
+no-color-blocks
+modules os,host,kernel,-,cpu,memory,swap,-,shell
+exec Pool:zpool list -H -o health,cap zroot
+```
+
+purefetch reads `$PUREFETCH_CONFIG`, then `~/.config/purefetch/config`, then
+`/etc/purefetch/config`. Command-line flags override the file; `--no-config`
+ignores it.
 
 ## Detected info
 

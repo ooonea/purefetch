@@ -21,14 +21,43 @@ enum Mod {
 }
 
 fn main() {
+    let cli: Vec<String> = std::env::args().skip(1).collect();
+
+    // Pre-scan for the config controls so we know what to read.
+    let mut explicit_config: Option<String> = None;
+    let mut no_config = false;
+    {
+        let mut j = 0;
+        while j < cli.len() {
+            match cli[j].as_str() {
+                "--config" => {
+                    j += 1;
+                    explicit_config = cli.get(j).cloned();
+                }
+                "--no-config" => no_config = true,
+                _ => {}
+            }
+            j += 1;
+        }
+    }
+
+    // Config-file options come first; real CLI args are appended so they win.
+    let mut args: Vec<String> = Vec::new();
+    if let Some(path) = config_path(explicit_config, no_config) {
+        if let Ok(text) = std::fs::read_to_string(&path) {
+            args.extend(config_to_args(&text));
+        }
+    }
+    args.extend(cli);
+
     let mut logo_sel = String::from("auto");
     let mut logo_file: Option<String> = None;
+    let mut logo_exec: Option<String> = None;
     let mut modules_arg: Option<String> = None;
     let mut execs: Vec<(String, String)> = Vec::new();
     let mut no_color = false;
     let mut no_color_blocks = false;
 
-    let args: Vec<String> = std::env::args().skip(1).collect();
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
@@ -40,6 +69,9 @@ fn main() {
                 println!("{NAME} {VERSION}");
                 return;
             }
+            // Config controls: resolved in the pre-scan above; skip here.
+            "--no-config" => {}
+            "--config" => i += 1,
             "--no-color" | "--no-colour" => no_color = true,
             "--no-color-blocks" => no_color_blocks = true,
             "--no-logo" => logo_sel = "none".into(),
@@ -55,6 +87,13 @@ fn main() {
                 match args.get(i) {
                     Some(v) => logo_file = Some(v.clone()),
                     None => fail("--logo-file requires a path"),
+                }
+            }
+            "--logo-exec" => {
+                i += 1;
+                match args.get(i) {
+                    Some(v) => logo_exec = Some(v.clone()),
+                    None => fail("--logo-exec requires a command"),
                 }
             }
             "--modules" => {
@@ -89,19 +128,15 @@ fn main() {
     let pal = color::Palette::new(color_enabled);
     let term_width = if tty { sys::term_width() } else { 0 };
 
-    // Logo: an explicit --logo-file (rendered verbatim) wins; otherwise the
-    // built-in / auto-detected distro logo.
+    // Logo source, in precedence order: --logo-file (verbatim file) >
+    // --logo-exec (command output, verbatim) > built-in / auto-detected.
     let logo_lines: Vec<String> = if let Some(path) = &logo_file {
-        let raw = std::fs::read_to_string(path).unwrap_or_default();
-        raw.lines()
-            .map(|ln| {
-                if color_enabled {
-                    ln.to_string()
-                } else {
-                    render::strip_ansi(ln)
-                }
-            })
-            .collect()
+        verbatim_logo(
+            &std::fs::read_to_string(path).unwrap_or_default(),
+            color_enabled,
+        )
+    } else if let Some(cmd) = &logo_exec {
+        verbatim_logo(&util::sh_raw(cmd).unwrap_or_default(), color_enabled)
     } else {
         match logo::get(&logo_sel) {
             Some(l) => l.lines.iter().map(|ln| pal.paint(l.sgr, ln)).collect(),
@@ -161,9 +196,78 @@ fn main() {
     render::render(&logo_lines, &lines, &pal, term_width);
 }
 
+/// Split a raw (possibly ANSI) logo into lines, stripping ANSI when color is off.
+fn verbatim_logo(raw: &str, color_enabled: bool) -> Vec<String> {
+    raw.lines()
+        .map(|ln| {
+            if color_enabled {
+                ln.to_string()
+            } else {
+                render::strip_ansi(ln)
+            }
+        })
+        .collect()
+}
+
 fn fail(msg: &str) -> ! {
     eprintln!("{NAME}: {msg}");
     std::process::exit(2);
+}
+
+/// Locate the config file: explicit `--config`, then `$PUREFETCH_CONFIG`, then
+/// `$XDG_CONFIG_HOME/purefetch/config` (or `~/.config/...`), then `/etc/purefetch/config`.
+fn config_path(explicit: Option<String>, no_config: bool) -> Option<String> {
+    if no_config {
+        return None;
+    }
+    if explicit.is_some() {
+        return explicit;
+    }
+    if let Ok(p) = std::env::var("PUREFETCH_CONFIG") {
+        if !p.is_empty() {
+            return Some(p);
+        }
+    }
+    let user = std::env::var("XDG_CONFIG_HOME")
+        .ok()
+        .filter(|s| !s.is_empty())
+        .map(|b| format!("{b}/purefetch/config"))
+        .or_else(|| {
+            std::env::var("HOME")
+                .ok()
+                .map(|h| format!("{h}/.config/purefetch/config"))
+        });
+    if let Some(p) = user {
+        if std::path::Path::new(&p).exists() {
+            return Some(p);
+        }
+    }
+    let etc = "/etc/purefetch/config";
+    if std::path::Path::new(etc).exists() {
+        return Some(etc.to_string());
+    }
+    None
+}
+
+/// Turn a config file into pseudo CLI args. Each non-comment line is
+/// `<option> [value]`, e.g. `modules os,cpu` -> ["--modules", "os,cpu"].
+fn config_to_args(text: &str) -> Vec<String> {
+    let mut out = Vec::new();
+    for line in text.lines() {
+        let line = line.trim();
+        if line.is_empty() || line.starts_with('#') {
+            continue;
+        }
+        let (key, rest) = match line.split_once(char::is_whitespace) {
+            Some((k, r)) => (k, r.trim()),
+            None => (line, ""),
+        };
+        out.push(format!("--{key}"));
+        if !rest.is_empty() {
+            out.push(rest.to_string());
+        }
+    }
+    out
 }
 
 /// The default module layout, grouped by blank separators.
@@ -267,13 +371,19 @@ fn print_help() {
     println!("USAGE:");
     println!("    {NAME} [OPTIONS]");
     println!();
+    println!("Options may also be set, one per line as `key value`, in a config file:");
+    println!("$PUREFETCH_CONFIG, ~/.config/purefetch/config, or /etc/purefetch/config.");
+    println!();
     println!("OPTIONS:");
     println!("    -l, --logo <NAME>       logo: auto (default), a distro name, tux, or none");
     println!("        --logo-file <PATH>  use a custom logo, read verbatim from a file");
+    println!("        --logo-exec <CMD>   use a custom logo from a command's output (dynamic)");
     println!("        --modules <LIST>    comma-separated modules to show ('-' = separator),");
     println!("                            e.g. os,host,kernel,-,cpu,gpu,memory,swap,-,shell");
     println!("        --exec <LABEL:CMD>  add a custom line running a shell command; refer to");
     println!("                            it in --modules by <label> (lowercased). Repeatable.");
+    println!("        --config <PATH>     read options from PATH");
+    println!("        --no-config         ignore any config file");
     println!("        --no-logo           do not print any logo");
     println!("        --no-color          disable ANSI colors");
     println!("        --no-color-blocks   hide the trailing ANSI color blocks");
