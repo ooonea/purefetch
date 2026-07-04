@@ -30,12 +30,8 @@ jobs:
       - name: Check (aarch64)
         run: cargo check --target aarch64-unknown-linux-gnu --verbose
 
-      # Lints are informational for now: they run and surface results but do not
-      # fail the build, so the badge reflects "does it build and pass tests".
       - name: Rustfmt
         run: cargo fmt --all -- --check
-        continue-on-error: true
 
       - name: Clippy
         run: cargo clippy --all-targets -- -D warnings
-        continue-on-error: true
