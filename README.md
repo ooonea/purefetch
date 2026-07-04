@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/ooonea/purefetch/actions/workflows/ci.yml/badge.svg)](https://github.com/ooonea/purefetch/actions/workflows/ci.yml)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
-![Rust](https://img.shields.io/badge/rust-1.59%2B-orange.svg)
+![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)
 ![Dependencies: 0](https://img.shields.io/badge/dependencies-0-brightgreen.svg)
 
 A small, fast system-information tool — a [fastfetch](https://github.com/fastfetch-cli/fastfetch)-style
@@ -40,7 +40,7 @@ parsing of `/proc` and `/sys`. It builds offline and has a trivial dependency gr
 
 ## Install
 
-With a Rust toolchain (1.59+), install straight from the repo — no clone needed:
+With a Rust toolchain (1.70+), install straight from the repo — no clone needed:
 
 ```sh
 cargo install --git https://github.com/ooonea/purefetch

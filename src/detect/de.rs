@@ -11,11 +11,7 @@ pub fn detect() -> Rows {
         return Vec::new();
     };
     // A colon-separated list such as "ubuntu:GNOME": take the last non-empty token.
-    let token = raw
-        .split(':')
-        .map(str::trim)
-        .filter(|t| !t.is_empty())
-        .next_back();
+    let token = raw.split(':').map(str::trim).rfind(|t| !t.is_empty());
     let Some(token) = token else {
         return Vec::new();
     };
@@ -29,7 +25,11 @@ pub fn detect() -> Rows {
 
 /// First of the desktop env vars that is set and non-empty.
 fn desktop_hint() -> Option<String> {
-    for key in ["XDG_CURRENT_DESKTOP", "XDG_SESSION_DESKTOP", "DESKTOP_SESSION"] {
+    for key in [
+        "XDG_CURRENT_DESKTOP",
+        "XDG_SESSION_DESKTOP",
+        "DESKTOP_SESSION",
+    ] {
         if let Ok(v) = std::env::var(key) {
             let v = v.trim();
             if !v.is_empty() {
@@ -77,7 +77,9 @@ fn normalize(token: &str) -> String {
 /// DE version string, or None if it cannot be determined.
 fn version_for(name: &str) -> Option<String> {
     match name {
-        "GNOME" => crate::util::cmd("gnome-shell", &["--version"]).and_then(|s| first_num_token(&s)),
+        "GNOME" => {
+            crate::util::cmd("gnome-shell", &["--version"]).and_then(|s| first_num_token(&s))
+        }
         "KDE Plasma" => match std::env::var("KDE_SESSION_VERSION") {
             Ok(v) if !v.trim().is_empty() => Some(v.trim().to_string()),
             _ => crate::util::cmd("plasmashell", &["--version"]).and_then(|s| first_num_token(&s)),

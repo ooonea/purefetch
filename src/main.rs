@@ -49,8 +49,7 @@ fn main() {
     }
 
     let tty = sys::stdout_is_tty();
-    let color_enabled =
-        !no_color && std::env::var_os("NO_COLOR").is_none() && tty;
+    let color_enabled = !no_color && std::env::var_os("NO_COLOR").is_none() && tty;
     let pal = color::Palette::new(color_enabled);
     let term_width = if tty { sys::term_width() } else { 0 };
 

@@ -95,7 +95,11 @@ fn de_to_wm() -> Option<&'static str> {
 
 /// Pretty session type from $XDG_SESSION_TYPE, or None if not X11/Wayland.
 fn session_suffix() -> Option<&'static str> {
-    match std::env::var("XDG_SESSION_TYPE").ok()?.to_ascii_lowercase().as_str() {
+    match std::env::var("XDG_SESSION_TYPE")
+        .ok()?
+        .to_ascii_lowercase()
+        .as_str()
+    {
         "wayland" => Some("Wayland"),
         "x11" => Some("X11"),
         _ => None,

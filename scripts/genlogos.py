@@ -15,6 +15,7 @@ src/logo.rs so the hand-made Debian and Tux art is preserved.
 """
 import os
 import re
+import subprocess
 import sys
 
 # Display order and the name aliases each logo answers to (first is canonical).
@@ -186,8 +187,14 @@ def main():
         out.append("")
 
     text = "\n".join(out).rstrip("\n") + "\n"
-    with open(os.path.join(root, "src", "logo.rs"), "w") as f:
+    dst = os.path.join(root, "src", "logo.rs")
+    with open(dst, "w") as f:
         f.write(text)
+    # Canonicalize with rustfmt when it is available on PATH.
+    try:
+        subprocess.run(["rustfmt", dst], check=False)
+    except FileNotFoundError:
+        pass
     print("wrote src/logo.rs: %d logos" % len(entries))
 
 

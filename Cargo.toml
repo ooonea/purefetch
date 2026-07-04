@@ -2,7 +2,7 @@
 name = "purefetch"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.59"
+rust-version = "1.70"
 authors = ["ooonea"]
 description = "A fast, fastfetch-style system information tool written entirely in Rust with zero dependencies"
 repository = "https://github.com/ooonea/purefetch"

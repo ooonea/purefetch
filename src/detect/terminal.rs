@@ -85,7 +85,7 @@ fn canonical(comm: &str) -> Option<&'static str> {
 
 /// Resolve the terminal from environment hints when the chain gave nothing.
 fn from_env() -> Option<&'static str> {
-    let has = |k: &str| std::env::var_os(k).map_or(false, |v| !v.is_empty());
+    let has = |k: &str| std::env::var_os(k).is_some_and(|v| !v.is_empty());
     if has("KITTY_WINDOW_ID") {
         return Some("kitty");
     }
@@ -194,8 +194,11 @@ fn version_of(term: &str) -> Option<String> {
 /// e.g. "kitty 0.41.1 created by ..." -> "0.41.1". A leading 'v' is stripped.
 fn version_token(line: &str) -> Option<String> {
     for tok in line.split_whitespace() {
-        let candidate = tok.strip_prefix('v').or_else(|| tok.strip_prefix('V')).unwrap_or(tok);
-        if candidate.chars().next().map_or(false, |c| c.is_ascii_digit()) {
+        let candidate = tok
+            .strip_prefix('v')
+            .or_else(|| tok.strip_prefix('V'))
+            .unwrap_or(tok);
+        if candidate.chars().next().is_some_and(|c| c.is_ascii_digit()) {
             return Some(candidate.to_string());
         }
     }

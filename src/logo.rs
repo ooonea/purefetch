@@ -20,7 +20,10 @@ pub fn get(selector: &str) -> Option<Logo> {
     Some(
         known(&name)
             .or_else(|| known(&detect_distro()))
-            .unwrap_or(Logo { lines: TUX, sgr: TUX_SGR }),
+            .unwrap_or(Logo {
+                lines: TUX,
+                sgr: TUX_SGR,
+            }),
     )
 }
 
@@ -56,18 +59,54 @@ fn normalize(id: &str) -> String {
 /// A logo for a known name/alias, or None if unrecognized.
 fn known(name: &str) -> Option<Logo> {
     Some(match name {
-        "debian" => Logo { lines: DEBIAN, sgr: "215;7;81" },
-        "arch" => Logo { lines: ARCH, sgr: "23;147;209" },
-        "ubuntu" => Logo { lines: UBUNTU, sgr: "233;84;32" },
-        "fedora" => Logo { lines: FEDORA, sgr: "60;110;180" },
-        "mint" => Logo { lines: MINT, sgr: "111;190;70" },
-        "manjaro" => Logo { lines: MANJARO, sgr: "53;191;92" },
-        "pop" => Logo { lines: POP, sgr: "72;185;199" },
-        "opensuse" => Logo { lines: OPENSUSE, sgr: "115;186;37" },
-        "alpine" => Logo { lines: ALPINE, sgr: "12;89;191" },
-        "void" => Logo { lines: VOID, sgr: "71;138;58" },
-        "nixos" => Logo { lines: NIXOS, sgr: "82;119;195" },
-        "tux" | "linux" | "generic" => Logo { lines: TUX, sgr: TUX_SGR },
+        "debian" => Logo {
+            lines: DEBIAN,
+            sgr: "215;7;81",
+        },
+        "arch" => Logo {
+            lines: ARCH,
+            sgr: "23;147;209",
+        },
+        "ubuntu" => Logo {
+            lines: UBUNTU,
+            sgr: "233;84;32",
+        },
+        "fedora" => Logo {
+            lines: FEDORA,
+            sgr: "60;110;180",
+        },
+        "mint" => Logo {
+            lines: MINT,
+            sgr: "111;190;70",
+        },
+        "manjaro" => Logo {
+            lines: MANJARO,
+            sgr: "53;191;92",
+        },
+        "pop" => Logo {
+            lines: POP,
+            sgr: "72;185;199",
+        },
+        "opensuse" => Logo {
+            lines: OPENSUSE,
+            sgr: "115;186;37",
+        },
+        "alpine" => Logo {
+            lines: ALPINE,
+            sgr: "12;89;191",
+        },
+        "void" => Logo {
+            lines: VOID,
+            sgr: "71;138;58",
+        },
+        "nixos" => Logo {
+            lines: NIXOS,
+            sgr: "82;119;195",
+        },
+        "tux" | "linux" | "generic" => Logo {
+            lines: TUX,
+            sgr: TUX_SGR,
+        },
         _ => return None,
     })
 }
