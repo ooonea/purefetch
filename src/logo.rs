@@ -61,95 +61,95 @@ fn known(name: &str) -> Option<Logo> {
     Some(match name {
         "debian" => Logo {
             lines: DEBIAN,
-            sgr: "215;7;81",
+            sgr: "38;2;215;7;81",
         },
         "arch" => Logo {
             lines: ARCH,
-            sgr: "23;147;209",
+            sgr: "38;2;23;147;209",
         },
         "ubuntu" => Logo {
             lines: UBUNTU,
-            sgr: "233;84;32",
+            sgr: "38;2;233;84;32",
         },
         "fedora" => Logo {
             lines: FEDORA,
-            sgr: "60;110;180",
+            sgr: "38;2;60;110;180",
         },
         "mint" => Logo {
             lines: MINT,
-            sgr: "111;190;70",
+            sgr: "38;2;111;190;70",
         },
         "manjaro" => Logo {
             lines: MANJARO,
-            sgr: "53;191;92",
+            sgr: "38;2;53;191;92",
         },
         "pop" => Logo {
             lines: POP,
-            sgr: "72;185;199",
+            sgr: "38;2;72;185;199",
         },
         "opensuse" => Logo {
             lines: OPENSUSE,
-            sgr: "115;186;37",
+            sgr: "38;2;115;186;37",
         },
         "alpine" => Logo {
             lines: ALPINE,
-            sgr: "12;89;191",
+            sgr: "38;2;12;89;191",
         },
         "void" => Logo {
             lines: VOID,
-            sgr: "71;138;58",
+            sgr: "38;2;71;138;58",
         },
         "nixos" => Logo {
             lines: NIXOS,
-            sgr: "82;119;195",
+            sgr: "38;2;82;119;195",
         },
         "gentoo" => Logo {
             lines: GENTOO,
-            sgr: "148;120;185",
+            sgr: "38;2;148;120;185",
         },
         "endeavouros" | "endeavour" => Logo {
             lines: ENDEAVOUROS,
-            sgr: "155;80;190",
+            sgr: "38;2;155;80;190",
         },
         "kali" => Logo {
             lines: KALI,
-            sgr: "39;127;219",
+            sgr: "38;2;39;127;219",
         },
         "elementary" => Logo {
             lines: ELEMENTARY,
-            sgr: "64;142;203",
+            sgr: "38;2;64;142;203",
         },
         "zorin" => Logo {
             lines: ZORIN,
-            sgr: "21;166;225",
+            sgr: "38;2;21;166;225",
         },
         "artix" => Logo {
             lines: ARTIX,
-            sgr: "39;166;219",
+            sgr: "38;2;39;166;219",
         },
         "rocky" => Logo {
             lines: ROCKY,
-            sgr: "16;185;129",
+            sgr: "38;2;16;185;129",
         },
         "almalinux" | "alma" => Logo {
             lines: ALMALINUX,
-            sgr: "24;118;210",
+            sgr: "38;2;24;118;210",
         },
         "centos" => Logo {
             lines: CENTOS,
-            sgr: "156;57;135",
+            sgr: "38;2;156;57;135",
         },
         "devuan" => Logo {
             lines: DEVUAN,
-            sgr: "160;40;150",
+            sgr: "38;2;160;40;150",
         },
         "mx" => Logo {
             lines: MX,
-            sgr: "236;236;236",
+            sgr: "38;2;236;236;236",
         },
         "garuda" => Logo {
             lines: GARUDA,
-            sgr: "231;96;72",
+            sgr: "38;2;231;96;72",
         },
         "tux" | "linux" | "generic" => Logo {
             lines: TUX,
@@ -159,7 +159,7 @@ fn known(name: &str) -> Option<Logo> {
     })
 }
 
-const TUX_SGR: &str = "236;236;236";
+const TUX_SGR: &str = "38;2;236;236;236";
 
 const DEBIAN: &[&str] = &[
     "       _,met$$$$$gg.",

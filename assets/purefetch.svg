@@ -4,56 +4,56 @@
 <circle cx="40" cy="17" r="6" fill="#ffbd2e"/>
 <circle cx="60" cy="17" r="6" fill="#27c93f"/>
 <text x="368" y="21" fill="#6272a4" text-anchor="middle" font-size="12">purefetch</text>
-<text x="22.0" y="71.0" fill="#f8f8f2" xml:space="preserve">       _,met$$$$$gg.</text>
+<text x="22.0" y="71.0" fill="#d70751" xml:space="preserve">       _,met$$$$$gg.</text>
 <text x="292.0" y="71.0" fill="#9580ff" xml:space="preserve" font-weight="bold">ooonea@unicorn</text>
-<text x="22.0" y="91.0" fill="#f8f8f2" xml:space="preserve">    ,g$$$$$$$$$$$$$$$P.</text>
+<text x="22.0" y="91.0" fill="#d70751" xml:space="preserve">    ,g$$$$$$$$$$$$$$$P.</text>
 <text x="292.0" y="91.0" fill="#7970a9" xml:space="preserve">──────────────</text>
-<text x="22.0" y="111.0" fill="#f8f8f2" xml:space="preserve">  ,g$$P&quot;     &quot;&quot;&quot;Y$$.&quot;.</text>
+<text x="22.0" y="111.0" fill="#d70751" xml:space="preserve">  ,g$$P&quot;     &quot;&quot;&quot;Y$$.&quot;.</text>
 <text x="292.0" y="111.0" fill="#9580ff" xml:space="preserve">OS      </text>
 <text x="364.0" y="111.0" fill="#f8f8f2" xml:space="preserve">  Debian GNU/Linux 13.5 (trixie) x86_64</text>
-<text x="22.0" y="131.0" fill="#f8f8f2" xml:space="preserve"> ,$$P&#x27;              `$$$.</text>
+<text x="22.0" y="131.0" fill="#d70751" xml:space="preserve"> ,$$P&#x27;              `$$$.</text>
 <text x="292.0" y="131.0" fill="#9580ff" xml:space="preserve">Host    </text>
 <text x="364.0" y="131.0" fill="#f8f8f2" xml:space="preserve">  ThinkPad P53 (20QQS0JD01)</text>
-<text x="22.0" y="151.0" fill="#f8f8f2" xml:space="preserve">&#x27;,$$P       ,ggs.     `$$b:</text>
+<text x="22.0" y="151.0" fill="#d70751" xml:space="preserve">&#x27;,$$P       ,ggs.     `$$b:</text>
 <text x="292.0" y="151.0" fill="#9580ff" xml:space="preserve">Kernel  </text>
 <text x="364.0" y="151.0" fill="#f8f8f2" xml:space="preserve">  6.12.94+deb13-amd64</text>
-<text x="22.0" y="171.0" fill="#f8f8f2" xml:space="preserve">`d$$&#x27;     ,$P&quot;&#x27;   .    $$$</text>
+<text x="22.0" y="171.0" fill="#d70751" xml:space="preserve">`d$$&#x27;     ,$P&quot;&#x27;   .    $$$</text>
 <text x="292.0" y="171.0" fill="#9580ff" xml:space="preserve">Uptime  </text>
-<text x="364.0" y="171.0" fill="#f8f8f2" xml:space="preserve">  6 days, 14 hours, 24 mins</text>
-<text x="22.0" y="191.0" fill="#f8f8f2" xml:space="preserve"> $$P      d$&#x27;     ,    $$P</text>
+<text x="364.0" y="171.0" fill="#f8f8f2" xml:space="preserve">  6 days, 15 hours, 36 mins</text>
+<text x="22.0" y="191.0" fill="#d70751" xml:space="preserve"> $$P      d$&#x27;     ,    $$P</text>
 <text x="292.0" y="191.0" fill="#9580ff" xml:space="preserve">Packages</text>
-<text x="364.0" y="191.0" fill="#f8f8f2" xml:space="preserve">  2666 (dpkg), 1 (flatpak)</text>
-<text x="22.0" y="211.0" fill="#f8f8f2" xml:space="preserve"> $$:      $$.   -    ,d$$&#x27;</text>
+<text x="364.0" y="191.0" fill="#f8f8f2" xml:space="preserve">  2477 (dpkg), 1 (flatpak)</text>
+<text x="22.0" y="211.0" fill="#d70751" xml:space="preserve"> $$:      $$.   -    ,d$$&#x27;</text>
 <text x="292.0" y="211.0" fill="#9580ff" xml:space="preserve">Shell   </text>
 <text x="364.0" y="211.0" fill="#f8f8f2" xml:space="preserve">  bash 5.2.37</text>
-<text x="22.0" y="231.0" fill="#f8f8f2" xml:space="preserve"> $$;      Y$b._   _,d$P&#x27;</text>
+<text x="22.0" y="231.0" fill="#d70751" xml:space="preserve"> $$;      Y$b._   _,d$P&#x27;</text>
 <text x="292.0" y="231.0" fill="#9580ff" xml:space="preserve">Display </text>
 <text x="364.0" y="231.0" fill="#f8f8f2" xml:space="preserve">  1920x1080 (eDP-1)</text>
-<text x="22.0" y="251.0" fill="#f8f8f2" xml:space="preserve"> Y$$.    `.`&quot;Y$$$$P&quot;&#x27;</text>
+<text x="22.0" y="251.0" fill="#d70751" xml:space="preserve"> Y$$.    `.`&quot;Y$$$$P&quot;&#x27;</text>
 <text x="292.0" y="251.0" fill="#9580ff" xml:space="preserve">DE      </text>
 <text x="364.0" y="251.0" fill="#f8f8f2" xml:space="preserve">  GNOME 48.7</text>
-<text x="22.0" y="271.0" fill="#f8f8f2" xml:space="preserve"> `$$b      &quot;-.__</text>
+<text x="22.0" y="271.0" fill="#d70751" xml:space="preserve"> `$$b      &quot;-.__</text>
 <text x="292.0" y="271.0" fill="#9580ff" xml:space="preserve">WM      </text>
 <text x="364.0" y="271.0" fill="#f8f8f2" xml:space="preserve">  Mutter (Wayland)</text>
-<text x="22.0" y="291.0" fill="#f8f8f2" xml:space="preserve">  `Y$$</text>
+<text x="22.0" y="291.0" fill="#d70751" xml:space="preserve">  `Y$$</text>
 <text x="292.0" y="291.0" fill="#9580ff" xml:space="preserve">Terminal</text>
 <text x="364.0" y="291.0" fill="#f8f8f2" xml:space="preserve">  kitty 0.41.1</text>
-<text x="22.0" y="311.0" fill="#f8f8f2" xml:space="preserve">   `Y$$.</text>
+<text x="22.0" y="311.0" fill="#d70751" xml:space="preserve">   `Y$$.</text>
 <text x="292.0" y="311.0" fill="#7970a9" xml:space="preserve">──────────────</text>
-<text x="22.0" y="331.0" fill="#f8f8f2" xml:space="preserve">     `$$b.</text>
+<text x="22.0" y="331.0" fill="#d70751" xml:space="preserve">     `$$b.</text>
 <text x="292.0" y="331.0" fill="#9580ff" xml:space="preserve">CPU     </text>
 <text x="364.0" y="331.0" fill="#f8f8f2" xml:space="preserve">  Intel(R) Core(TM) i7-9850H @ 4.60 GHz</text>
-<text x="22.0" y="351.0" fill="#f8f8f2" xml:space="preserve">       `Y$$b.</text>
+<text x="22.0" y="351.0" fill="#d70751" xml:space="preserve">       `Y$$b.</text>
 <text x="292.0" y="351.0" fill="#9580ff" xml:space="preserve">GPU     </text>
 <text x="364.0" y="351.0" fill="#f8f8f2" xml:space="preserve">  Quadro RTX 3000</text>
-<text x="22.0" y="371.0" fill="#f8f8f2" xml:space="preserve">          `&quot;Y$b._</text>
+<text x="22.0" y="371.0" fill="#d70751" xml:space="preserve">          `&quot;Y$b._</text>
 <text x="292.0" y="371.0" fill="#9580ff" xml:space="preserve">Memory  </text>
-<text x="364.0" y="371.0" fill="#f8f8f2" xml:space="preserve">  15.56 GiB / 62.61 GiB (25%)</text>
-<text x="22.0" y="391.0" fill="#f8f8f2" xml:space="preserve">              `&quot;&quot;&quot;</text>
+<text x="364.0" y="371.0" fill="#f8f8f2" xml:space="preserve">  15.36 GiB / 62.61 GiB (25%)</text>
+<text x="22.0" y="391.0" fill="#d70751" xml:space="preserve">              `&quot;&quot;&quot;</text>
 <text x="292.0" y="391.0" fill="#9580ff" xml:space="preserve">Swap    </text>
 <text x="364.0" y="391.0" fill="#f8f8f2" xml:space="preserve">  0 B / 8.00 GiB (0%)</text>
 <text x="292.0" y="411.0" fill="#9580ff" xml:space="preserve">Disk (/)</text>
-<text x="364.0" y="411.0" fill="#f8f8f2" xml:space="preserve">  8.48 GiB / 491.28 GiB (2%)</text>
+<text x="364.0" y="411.0" fill="#f8f8f2" xml:space="preserve">  8.52 GiB / 489.54 GiB (2%)</text>
 <text x="292.0" y="431.0" fill="#7970a9" xml:space="preserve">──────────────</text>
 <text x="292.0" y="451.0" fill="#9580ff" xml:space="preserve">Locale  </text>
 <text x="364.0" y="451.0" fill="#f8f8f2" xml:space="preserve">  en_US.UTF-8</text>

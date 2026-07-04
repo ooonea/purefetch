@@ -101,6 +101,15 @@ def rust_str(s):
     return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+def to_sgr(color):
+    # Color files store an "R;G;B" triplet; wrap it as a truecolor fg SGR
+    # (ESC[38;2;R;G;Bm). Pass through anything that already looks like SGR params.
+    color = color.strip()
+    if color.startswith("38;") or color.startswith("1;"):
+        return color
+    return "38;2;" + color
+
+
 def main():
     root = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
     bootstrap(root)
@@ -181,7 +190,7 @@ def main():
         else:
             out.append(
                 '        %s => Logo { lines: %s, sgr: "%s" },'
-                % (pat, const_name, color)
+                % (pat, const_name, to_sgr(color))
             )
     out.append("        _ => return None,")
     out.append("    })")
@@ -189,7 +198,7 @@ def main():
     out.append("")
     # TUX color as a named const (used by both the match arm and the fallback).
     tux_color = next((c for n, c, _a, _al in entries if n == "TUX"), "236;236;236")
-    out.append('const TUX_SGR: &str = "%s";' % tux_color)
+    out.append('const TUX_SGR: &str = "%s";' % to_sgr(tux_color))
     out.append("")
     for const_name, _color, art, _aliases in entries:
         out.append("const %s: &[&str] = &[" % const_name)
