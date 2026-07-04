@@ -1,0 +1,21 @@
+COLOR: 12;89;191
+       .hddddddddddddddddddddddh.
+      :dddddddddddddddddddddddddd:
+     /dddddddddddddddddddddddddddd/
+    +dddddddddddddddddddddddddddddd+
+  'sdddddddddddddddddddddddddddddddds'
+ 'ydddddddddddd++hdddddddddddddddddddy'
+.hddddddddddd+'  '+ddddh:-sdddddddddddh.
+hdddddddddd+'    '+y:    .yddddddddddddh
+ddddddddh+'   '//'   '.' -sddddddddddddd
+ddddddh+'   '/hddh/'  ':s-  -sdddddddddd
+ddddh+'   '/+/dddddh/'  '+s-  -sdddddddd
+ddd+'   '/o' :dddddddh/'  'oy-  .ydddddd
+hdddyo+ohddyosdddddddddho+oydddy++ohdddh
+.hddddddddddddddddddddddddddddddddddddh.
+ 'yddddddddddddddddddddddddddddddddddy'
+  'sdddddddddddddddddddddddddddddddds'
+    +dddddddddddddddddddddddddddddd+
+     /dddddddddddddddddddddddddddd/
+      :dddddddddddddddddddddddddd:
+       .hddddddddddddddddddddddh.
