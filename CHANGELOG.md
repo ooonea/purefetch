@@ -6,9 +6,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-07-04
+
 ### Changed
 - Rewrote the logo generator in Rust (`examples/genlogos.rs`) and dropped the
-  Python tooling, so the repository is 100% Rust again.
+  Python tooling, so the project is 100% Rust again.
 
 ## [0.1.2] - 2026-07-04
 
@@ -43,7 +45,8 @@ Initial release.
 - CLI: `--logo`, `--no-logo`, `--no-color`, `--version`, `--help`.
 - Dual-licensed MIT OR Apache-2.0.
 
-[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/ooonea/purefetch/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/ooonea/purefetch/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/ooonea/purefetch/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/ooonea/purefetch/releases/tag/v0.1.0
