@@ -74,6 +74,7 @@ purefetch [OPTIONS]
 
 -l, --logo <NAME>       logo: auto (default), or a distro name (see below)
     --logo-file <PATH>  use a custom logo, read verbatim from a file
+    --modules <LIST>    comma-separated modules to show ('-' = separator)
     --no-logo           do not print any logo
     --no-color          disable ANSI colors
     --no-color-blocks   hide the trailing ANSI color blocks
