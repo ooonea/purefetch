@@ -2,7 +2,8 @@
 //!
 //! The whole point of purefetch is to be written *entirely* in Rust, so instead
 //! of binding to C's `statvfs`/`ioctl` we issue the raw Linux syscalls directly
-//! on x86_64 and aarch64. Everything else in the crate uses `/proc`, `/sys`, std.
+//! on x86_64, aarch64, riscv64 and loongarch64. Everything else in the crate
+//! uses `/proc`, `/sys`, std.
 //!
 //! On other architectures these fall back to conservative defaults so the crate
 //! still builds.
@@ -42,24 +43,80 @@ unsafe fn syscall3(n: usize, a1: usize, a2: usize, a3: usize) -> isize {
     ret
 }
 
-#[cfg(not(any(target_arch = "x86_64", target_arch = "aarch64")))]
+#[cfg(target_arch = "riscv64")]
+#[inline]
+unsafe fn syscall3(n: usize, a1: usize, a2: usize, a3: usize) -> isize {
+    let ret: isize;
+    // riscv64 Linux ABI: nr in a7, args in a0..a2, return in a0.
+    core::arch::asm!(
+        "ecall",
+        in("a7") n,
+        inlateout("a0") a1 => ret,
+        in("a1") a2,
+        in("a2") a3,
+        options(nostack),
+    );
+    ret
+}
+
+#[cfg(target_arch = "loongarch64")]
+#[inline]
+unsafe fn syscall3(n: usize, a1: usize, a2: usize, a3: usize) -> isize {
+    let ret: isize;
+    // loongarch64 Linux ABI: nr in a7 ($r11), args in a0..a2 ($r4..$r6), return in a0.
+    core::arch::asm!(
+        "syscall 0",
+        in("$r11") n,
+        inlateout("$r4") a1 => ret,
+        in("$r5") a2,
+        in("$r6") a3,
+        options(nostack),
+    );
+    ret
+}
+
+#[cfg(not(any(
+    target_arch = "x86_64",
+    target_arch = "aarch64",
+    target_arch = "riscv64",
+    target_arch = "loongarch64"
+)))]
 unsafe fn syscall3(_n: usize, _a1: usize, _a2: usize, _a3: usize) -> isize {
     -1
 }
 
-// Syscall numbers are per-architecture. The ioctl request codes
-// (TIOCGWINSZ/TCGETS) are the asm-generic values shared by x86_64 and aarch64.
+// Syscall numbers are per-architecture: aarch64, riscv64 and loongarch64 share
+// the "asm-generic" table (statfs=43, ioctl=29); x86_64 has its own. The ioctl
+// request codes (TIOCGWINSZ/TCGETS) are the asm-generic values on all of these.
 #[cfg(target_arch = "x86_64")]
 const SYS_IOCTL: usize = 16;
 #[cfg(target_arch = "x86_64")]
 const SYS_STATFS: usize = 137;
-#[cfg(target_arch = "aarch64")]
+#[cfg(any(
+    target_arch = "aarch64",
+    target_arch = "riscv64",
+    target_arch = "loongarch64"
+))]
 const SYS_IOCTL: usize = 29;
-#[cfg(target_arch = "aarch64")]
+#[cfg(any(
+    target_arch = "aarch64",
+    target_arch = "riscv64",
+    target_arch = "loongarch64"
+))]
 const SYS_STATFS: usize = 43;
-#[cfg(not(any(target_arch = "x86_64", target_arch = "aarch64")))]
+#[cfg(not(any(
+    target_arch = "x86_64",
+    target_arch = "aarch64",
+    target_arch = "riscv64",
+    target_arch = "loongarch64"
+)))]
 const SYS_IOCTL: usize = 0;
-#[cfg(not(any(target_arch = "x86_64", target_arch = "aarch64")))]
+#[cfg(not(any(
+    target_arch = "x86_64",
+    target_arch = "aarch64",
+    target_arch = "riscv64",
+    target_arch = "loongarch64"
+)))]
 const SYS_STATFS: usize = 0;
 
 const TIOCGWINSZ: usize = 0x5413;

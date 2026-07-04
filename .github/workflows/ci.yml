@@ -17,7 +17,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
-          targets: aarch64-unknown-linux-gnu
+          targets: aarch64-unknown-linux-gnu, riscv64gc-unknown-linux-gnu, loongarch64-unknown-linux-gnu
 
       - name: Build (x86_64)
         run: cargo build --release --verbose
@@ -25,10 +25,15 @@ jobs:
       - name: Test
         run: cargo test --verbose
 
-      # Compile-check the aarch64 path (raw syscalls in src/sys.rs) without a
-      # cross linker.
+      # Compile-check the non-x86_64 syscall paths (src/sys.rs) without a cross linker.
       - name: Check (aarch64)
         run: cargo check --target aarch64-unknown-linux-gnu --verbose
+
+      - name: Check (riscv64)
+        run: cargo check --target riscv64gc-unknown-linux-gnu --verbose
+
+      - name: Check (loongarch64)
+        run: cargo check --target loongarch64-unknown-linux-gnu --verbose
 
       - name: Rustfmt
         run: cargo fmt --all -- --check
