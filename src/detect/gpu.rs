@@ -71,6 +71,16 @@ fn clean_lspci(desc: &str) -> String {
         .or_else(|| desc.strip_prefix("Intel Corporation "))
         .or_else(|| desc.strip_prefix("Advanced Micro Devices, Inc. "))
         .unwrap_or(desc);
+    // AMD prefixes the die with a bracketed vendor tag ("[AMD/ATI] Navi 31
+    // [Radeon ...]"); drop it so it isn't mistaken for the marketing name.
+    let stripped = stripped
+        .strip_prefix("[AMD/ATI] ")
+        .or_else(|| stripped.strip_prefix("[AMD] "))
+        .unwrap_or(stripped);
+    // Drop a trailing PCI revision, e.g. "Raphael (rev c9)" -> "Raphael".
+    let stripped = stripped
+        .rsplit_once(" (rev ")
+        .map_or(stripped, |(head, _)| head);
     // Prefer the marketing name in "[ ... ]" if present.
     if let Some(start) = stripped.find('[') {
         if let Some(end) = stripped[start + 1..].find(']') {

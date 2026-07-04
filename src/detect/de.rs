@@ -80,10 +80,14 @@ fn version_for(name: &str) -> Option<String> {
         "GNOME" => {
             crate::util::cmd("gnome-shell", &["--version"]).and_then(|s| first_num_token(&s))
         }
-        "KDE Plasma" => match std::env::var("KDE_SESSION_VERSION") {
-            Ok(v) if !v.trim().is_empty() => Some(v.trim().to_string()),
-            _ => crate::util::cmd("plasmashell", &["--version"]).and_then(|s| first_num_token(&s)),
-        },
+        // Prefer the full Plasma version from plasmashell; the KDE_SESSION_VERSION
+        // env var only carries the major (e.g. "6"), used only as a fallback.
+        "KDE Plasma" => crate::util::cmd("plasmashell", &["--version"])
+            .and_then(|s| first_num_token(&s))
+            .or_else(|| match std::env::var("KDE_SESSION_VERSION") {
+                Ok(v) if !v.trim().is_empty() => Some(v.trim().to_string()),
+                _ => None,
+            }),
         "XFCE" => {
             crate::util::cmd("xfce4-session", &["--version"]).and_then(|s| first_num_token(&s))
         }

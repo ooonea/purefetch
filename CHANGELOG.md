@@ -6,6 +6,24 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.9] - 2026-07-04
+
+### Fixed
+- `--no-logo` / `--logo none` now suppress a logo configured via `--logo-file` /
+  `--logo-exec` (e.g. from the config file). Logo sources are resolved by argument
+  order, so a command-line flag overrides one coming from the config.
+- GPU (lspci fallback): AMD adapters showed the `[AMD/ATI]` vendor tag instead of
+  the model. Drop the vendor tag and a trailing `(rev …)`, so the marketing name
+  (e.g. `Radeon RX 7900 XTX`, `Raphael`) is shown. NVIDIA/Intel unaffected.
+- KDE Plasma version: prefer the full `plasmashell --version` (e.g. `6.2.4`) over
+  the major-only `KDE_SESSION_VERSION`, which is now only a fallback.
+- `--config` with no path now errors, consistent with the other value-taking flags.
+- No more trailing whitespace on logo-only output rows.
+
+### Changed
+- A standalone `--exec` (without `--modules`) now appends its line to the default
+  layout instead of being silently ignored.
+
 ## [0.1.8] - 2026-07-04
 
 ### Fixed
@@ -85,7 +103,8 @@ Initial release.
 - CLI: `--logo`, `--no-logo`, `--no-color`, `--version`, `--help`.
 - Dual-licensed MIT OR Apache-2.0.
 
-[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.1.8...HEAD
+[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.1.9...HEAD
+[0.1.9]: https://github.com/ooonea/purefetch/compare/v0.1.8...v0.1.9
 [0.1.8]: https://github.com/ooonea/purefetch/compare/v0.1.7...v0.1.8
 [0.1.7]: https://github.com/ooonea/purefetch/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/ooonea/purefetch/compare/v0.1.5...v0.1.6

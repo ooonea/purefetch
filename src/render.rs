@@ -90,9 +90,12 @@ pub fn render(logo: &[String], info: &[Line], pal: &Palette, term_width: usize) 
             None => String::new(),
         };
 
-        out.push_str(logo_line);
-        out.push_str(&" ".repeat(logo_pad + gap));
-        out.push_str(&info_str);
+        let mut row = String::new();
+        row.push_str(logo_line);
+        row.push_str(&" ".repeat(logo_pad + gap));
+        row.push_str(&info_str);
+        // Trim the alignment padding that would otherwise trail logo-only rows.
+        out.push_str(row.trim_end());
         out.push('\n');
     }
     print!("{out}");

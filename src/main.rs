@@ -20,6 +20,15 @@ enum Mod {
     Exec(String, String), // (label, shell command)
 }
 
+/// Source of the ASCII logo. The last logo-related flag on the command line
+/// wins; config options are prepended before the real CLI args, so an explicit
+/// CLI flag (e.g. `--no-logo`) overrides one coming from the config file.
+enum LogoSource {
+    Builtin(String), // "auto", a distro name, or "none"/"off"
+    File(String),    // --logo-file: file contents, verbatim
+    Exec(String),    // --logo-exec: command output, verbatim
+}
+
 fn main() {
     let cli: Vec<String> = std::env::args().skip(1).collect();
 
@@ -50,9 +59,7 @@ fn main() {
     }
     args.extend(cli);
 
-    let mut logo_sel = String::from("auto");
-    let mut logo_file: Option<String> = None;
-    let mut logo_exec: Option<String> = None;
+    let mut logo_src = LogoSource::Builtin(String::from("auto"));
     let mut modules_arg: Option<String> = None;
     let mut execs: Vec<(String, String)> = Vec::new();
     let mut no_color = false;
@@ -71,28 +78,33 @@ fn main() {
             }
             // Config controls: resolved in the pre-scan above; skip here.
             "--no-config" => {}
-            "--config" => i += 1,
+            "--config" => {
+                i += 1;
+                if args.get(i).is_none() {
+                    fail("--config requires a path");
+                }
+            }
             "--no-color" | "--no-colour" => no_color = true,
             "--no-color-blocks" => no_color_blocks = true,
-            "--no-logo" => logo_sel = "none".into(),
+            "--no-logo" => logo_src = LogoSource::Builtin("none".into()),
             "-l" | "--logo" => {
                 i += 1;
                 match args.get(i) {
-                    Some(v) => logo_sel = v.clone(),
+                    Some(v) => logo_src = LogoSource::Builtin(v.clone()),
                     None => fail("--logo requires a value"),
                 }
             }
             "--logo-file" => {
                 i += 1;
                 match args.get(i) {
-                    Some(v) => logo_file = Some(v.clone()),
+                    Some(v) => logo_src = LogoSource::File(v.clone()),
                     None => fail("--logo-file requires a path"),
                 }
             }
             "--logo-exec" => {
                 i += 1;
                 match args.get(i) {
-                    Some(v) => logo_exec = Some(v.clone()),
+                    Some(v) => logo_src = LogoSource::Exec(v.clone()),
                     None => fail("--logo-exec requires a command"),
                 }
             }
@@ -128,20 +140,20 @@ fn main() {
     let pal = color::Palette::new(color_enabled);
     let term_width = if tty { sys::term_width() } else { 0 };
 
-    // Logo source, in precedence order: --logo-file (verbatim file) >
-    // --logo-exec (command output, verbatim) > built-in / auto-detected.
-    let logo_lines: Vec<String> = if let Some(path) = &logo_file {
-        verbatim_logo(
+    // Logo source: whichever logo flag was seen last (--no-logo, --logo,
+    // --logo-file, --logo-exec). A CLI flag overrides one from the config file.
+    let logo_lines: Vec<String> = match &logo_src {
+        LogoSource::File(path) => verbatim_logo(
             &std::fs::read_to_string(path).unwrap_or_default(),
             color_enabled,
-        )
-    } else if let Some(cmd) = &logo_exec {
-        verbatim_logo(&util::sh_raw(cmd).unwrap_or_default(), color_enabled)
-    } else {
-        match logo::get(&logo_sel) {
+        ),
+        LogoSource::Exec(cmd) => {
+            verbatim_logo(&util::sh_raw(cmd).unwrap_or_default(), color_enabled)
+        }
+        LogoSource::Builtin(sel) => match logo::get(sel) {
             Some(l) => l.lines.iter().map(|ln| pal.paint(l.sgr, ln)).collect(),
             None => Vec::new(),
-        }
+        },
     };
 
     // Title: user@host.
@@ -159,7 +171,20 @@ fn main() {
     // Info modules: the caller-selected set (--modules) or the default layout.
     let groups = match &modules_arg {
         Some(list) => parse_modules(list, &execs),
-        None => default_groups(),
+        None => {
+            // No explicit --modules: default layout, then append any --exec
+            // modules as a trailing group so a standalone --exec still shows.
+            let mut groups = default_groups();
+            if !execs.is_empty() {
+                groups.push(
+                    execs
+                        .iter()
+                        .map(|(l, c)| Mod::Exec(l.clone(), c.clone()))
+                        .collect(),
+                );
+            }
+            groups
+        }
     };
 
     let mut lines: Vec<Line> = vec![Line::Raw(pal.paint(pal.title, &title_plain))];
