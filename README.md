@@ -177,6 +177,13 @@ human-directed and every change was reviewed and tested — including running th
 tool on all four supported architectures under QEMU — but most of the code is
 AI-generated. Noting it openly so you know how it was made.
 
+## Credits
+
+The bundled distribution logos are taken from **fastfetch** (which builds on
+**neofetch**'s logo set); both are MIT-licensed. Full attribution and the MIT
+notices are in [CREDITS.md](CREDITS.md). The distro logos are trademarks of their
+respective projects, used nominatively only to identify the OS being reported.
+
 ## License
 
 Licensed under either of

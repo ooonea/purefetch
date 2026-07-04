@@ -53,3 +53,29 @@ fn max_freq_ghz() -> Option<f64> {
         .and_then(|s| s.parse::<f64>().ok())
         .map(|khz| khz / 1_000_000.0)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{clean_model, model_name};
+
+    #[test]
+    fn clean_model_drops_cpu_and_freq_suffix() {
+        assert_eq!(
+            clean_model("Intel(R) Core(TM) i7-9850H CPU @ 2.60GHz"),
+            "Intel(R) Core(TM) i7-9850H"
+        );
+        assert_eq!(
+            clean_model("AMD Ryzen 9 5900X 12-Core Processor"),
+            "AMD Ryzen 9 5900X 12-Core Processor"
+        );
+    }
+
+    #[test]
+    fn model_name_uses_preference_order() {
+        let x86 = "processor\t: 0\nmodel name\t: Test CPU X\nflags\t: fpu\n";
+        assert_eq!(model_name(x86).as_deref(), Some("Test CPU X"));
+        // riscv lacks "model name"; "uarch" is preferred over "isa".
+        let riscv = "processor\t: 0\nisa\t: rv64imafdc\nuarch\t: sifive,u74-mc\n";
+        assert_eq!(model_name(riscv).as_deref(), Some("sifive,u74-mc"));
+    }
+}

@@ -204,3 +204,35 @@ fn version_token(line: &str) -> Option<String> {
     }
     None
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{canonical, from_term, version_token};
+
+    #[test]
+    fn canonical_exact_and_15char_truncation() {
+        assert_eq!(canonical("kitty"), Some("kitty"));
+        assert_eq!(canonical("foot"), Some("foot"));
+        // The kernel truncates comm to 15 chars: "gnome-terminal-server" -> "gnome-terminal-".
+        assert_eq!(canonical("gnome-terminal-"), Some("gnome-terminal"));
+        assert_eq!(canonical("zsh"), None);
+    }
+
+    #[test]
+    fn version_token_picks_first_numeric() {
+        assert_eq!(
+            version_token("kitty 0.41.1 created by ...").as_deref(),
+            Some("0.41.1")
+        );
+        assert_eq!(version_token("v1.2.3").as_deref(), Some("1.2.3"));
+        assert_eq!(version_token("no digits here"), None);
+    }
+
+    #[test]
+    fn from_term_matches_term_value() {
+        assert_eq!(from_term("xterm-kitty"), Some("kitty"));
+        assert_eq!(from_term("foot-extra"), Some("foot"));
+        assert_eq!(from_term("rxvt-unicode-256color"), Some("urxvt"));
+        assert_eq!(from_term("dumb"), None);
+    }
+}

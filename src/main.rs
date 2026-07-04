@@ -151,7 +151,11 @@ fn main() {
             verbatim_logo(&util::sh_raw(cmd).unwrap_or_default(), color_enabled)
         }
         LogoSource::Builtin(sel) => match logo::get(sel) {
-            Some(l) => l.lines.iter().map(|ln| pal.paint(l.sgr, ln)).collect(),
+            Some(l) => l
+                .lines
+                .iter()
+                .map(|ln| paint_logo_line(ln, l.colors, color_enabled))
+                .collect(),
             None => Vec::new(),
         },
     };
@@ -232,6 +236,49 @@ fn verbatim_logo(raw: &str, color_enabled: bool) -> Vec<String> {
             }
         })
         .collect()
+}
+
+/// Colorize one built-in logo line. The art selects colors with `$1`..`$9`
+/// markers (any text before the first marker uses the first color); a literal `$`
+/// is any `$` not followed by a digit. With color disabled, the markers are
+/// simply removed.
+fn paint_logo_line(line: &str, colors: &[&str], color_enabled: bool) -> String {
+    if !color_enabled {
+        let mut out = String::with_capacity(line.len());
+        let mut chars = line.chars().peekable();
+        while let Some(c) = chars.next() {
+            if c == '$' && chars.peek().is_some_and(|d| d.is_ascii_digit()) {
+                chars.next(); // drop the digit: `$N` is a color marker
+                continue;
+            }
+            out.push(c);
+        }
+        return out;
+    }
+    let sgr = |i: usize| {
+        colors
+            .get(i)
+            .map(|c| format!("\x1b[{c}m"))
+            .unwrap_or_default()
+    };
+    let mut out = String::with_capacity(line.len() + 16);
+    out.push_str(&sgr(0)); // text before the first marker uses color 1
+    let mut chars = line.chars().peekable();
+    while let Some(c) = chars.next() {
+        if c == '$' {
+            let digit = chars.peek().and_then(|d| d.to_digit(10));
+            if let Some(d) = digit {
+                if d >= 1 {
+                    chars.next();
+                    out.push_str(&sgr((d - 1) as usize));
+                    continue;
+                }
+            }
+        }
+        out.push(c);
+    }
+    out.push_str("\x1b[0m");
+    out
 }
 
 fn fail(msg: &str) -> ! {
@@ -414,4 +461,25 @@ fn print_help() {
     println!("        --no-color-blocks   hide the trailing ANSI color blocks");
     println!("    -V, --version           print version and exit");
     println!("    -h, --help              print this help and exit");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::config_to_args;
+
+    #[test]
+    fn config_lines_become_pseudo_args() {
+        let cfg = "# a comment\nmodules os,cpu\nno-color-blocks\n\nlogo-exec /path/to gen.sh\n";
+        let expected: Vec<String> = [
+            "--modules",
+            "os,cpu",
+            "--no-color-blocks",
+            "--logo-exec",
+            "/path/to gen.sh",
+        ]
+        .iter()
+        .map(|s| s.to_string())
+        .collect();
+        assert_eq!(config_to_args(cfg), expected);
+    }
 }

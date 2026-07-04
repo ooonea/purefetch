@@ -6,6 +6,23 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.10] - 2026-07-05
+
+### Added
+- Multi-color logos: a logo's `.txt` can define several colors (a `COLORS:` line
+  of SGR params) selected by `$1`..`$9` markers in the art, fastfetch-style, so
+  distro logos render in their real multi-tone colors. A literal `$` is any `$`
+  not followed by a digit, so the Debian swirl still renders correctly.
+- Unit tests for the pure parsing/formatting helpers (IEC/percent formatting,
+  ANSI width & strip, lspci / cpuinfo parsing, ppid & uptime & DRM-connector
+  parsing, config-line and logo-marker handling).
+
+### Changed
+- All bundled distribution logos are now taken from fastfetch (which builds on
+  neofetch's set) and render in their native colors, replacing the previous mix
+  of adapted single-color art. Attribution and the MIT notices for both projects
+  are in [CREDITS.md](CREDITS.md).
+
 ## [0.1.9] - 2026-07-04
 
 ### Fixed
@@ -103,7 +120,8 @@ Initial release.
 - CLI: `--logo`, `--no-logo`, `--no-color`, `--version`, `--help`.
 - Dual-licensed MIT OR Apache-2.0.
 
-[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.1.9...HEAD
+[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.1.10...HEAD
+[0.1.10]: https://github.com/ooonea/purefetch/compare/v0.1.9...v0.1.10
 [0.1.9]: https://github.com/ooonea/purefetch/compare/v0.1.8...v0.1.9
 [0.1.8]: https://github.com/ooonea/purefetch/compare/v0.1.7...v0.1.8
 [0.1.7]: https://github.com/ooonea/purefetch/compare/v0.1.6...v0.1.7

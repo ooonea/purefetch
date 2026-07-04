@@ -108,3 +108,27 @@ fn first_num_token(s: &str) -> Option<String> {
         .find(|t| t.chars().next().is_some_and(|c| c.is_ascii_digit()))
         .map(|t| t.to_string())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{first_num_token, normalize};
+
+    #[test]
+    fn normalize_canonicalizes_known_desktops() {
+        assert_eq!(normalize("GNOME"), "GNOME");
+        assert_eq!(normalize("KDE"), "KDE Plasma");
+        assert_eq!(normalize("plasma"), "KDE Plasma");
+        assert_eq!(normalize("xfce"), "XFCE");
+        assert_eq!(normalize("SomethingElse"), "SomethingElse");
+    }
+
+    #[test]
+    fn first_num_token_extracts_version() {
+        assert_eq!(first_num_token("GNOME Shell 48.7").as_deref(), Some("48.7"));
+        assert_eq!(
+            first_num_token("plasmashell 6.2.4").as_deref(),
+            Some("6.2.4")
+        );
+        assert_eq!(first_num_token("no version"), None);
+    }
+}

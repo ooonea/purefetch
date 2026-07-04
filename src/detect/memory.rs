@@ -39,3 +39,16 @@ fn parse_kb(s: &str) -> u64 {
         .map(|kb| kb * 1024)
         .unwrap_or(0)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::parse_kb;
+
+    #[test]
+    fn parse_kb_to_bytes() {
+        assert_eq!(parse_kb("  62518234 kB"), 62_518_234 * 1024);
+        assert_eq!(parse_kb("0 kB"), 0);
+        assert_eq!(parse_kb("garbage"), 0);
+        assert_eq!(parse_kb(""), 0);
+    }
+}

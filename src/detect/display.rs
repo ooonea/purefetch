@@ -58,3 +58,18 @@ fn strip_card_prefix(dir: &str) -> Option<&str> {
         Some(connector)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::strip_card_prefix;
+
+    #[test]
+    fn connector_nodes_only() {
+        assert_eq!(strip_card_prefix("card0-eDP-1"), Some("eDP-1"));
+        assert_eq!(strip_card_prefix("card1-HDMI-A-1"), Some("HDMI-A-1"));
+        assert_eq!(strip_card_prefix("card0"), None);
+        assert_eq!(strip_card_prefix("card0-"), None);
+        assert_eq!(strip_card_prefix("renderD128"), None);
+        assert_eq!(strip_card_prefix("version"), None);
+    }
+}

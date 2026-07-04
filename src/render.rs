@@ -100,3 +100,23 @@ pub fn render(logo: &[String], info: &[Line], pal: &Palette, term_width: usize) 
     }
     print!("{out}");
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{strip_ansi, visible_width};
+
+    #[test]
+    fn width_ignores_sgr_escapes() {
+        assert_eq!(visible_width("\x1b[1;38;2;1;2;3mABC\x1b[0m"), 3);
+        assert_eq!(visible_width("plain"), 5);
+        assert_eq!(visible_width(""), 0);
+        assert_eq!(visible_width("a\x1b[0m"), 1);
+    }
+
+    #[test]
+    fn strip_removes_sgr_only() {
+        assert_eq!(strip_ansi("\x1b[31mred\x1b[0m"), "red");
+        assert_eq!(strip_ansi("no escapes"), "no escapes");
+        assert_eq!(strip_ansi(""), "");
+    }
+}

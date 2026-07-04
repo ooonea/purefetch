@@ -1,20 +1,20 @@
-COLOR: 156;57;135
+COLORS: 33 32 34 35 37
                  ..
                .PLTJ.
               <><><><>
-     KKSSV' 4KKK LJ KKKL.'VSSKK
-     KKV' 4KKKKK LJ KKKKAL 'VK
-     V' ' 'VKKKK LJ KKKKV' ' 'V
-     .4MA.' 'VKK LJ KKV' '.4Mb.
-   . KKKKKA.' 'V LJ V' '.4KKKKK .
- .4D KKKKKKKA.'' LJ ''.4KKKKKKK FA.
-<QDD ++++++++++++  ++++++++++++ GFD>
- 'VD KKKKKKKK'.. LJ ..'KKKKKKKK FV
-   ' VKKKKK'. .4 LJ K. .'KKKKKV '
-      'VK'. .4KK LJ KKA. .'KV'
-     A. . .4KKKK LJ KKKKA. . .4
-     KKA. 'KKKKK LJ KKKKK' .4KK
-     KKSSA. VKKK LJ KKKV .4SSKK
-              <><><><>
-               'MKKM'
-                 ''
+     $2KKSSV' 4KKK $1LJ$4 KKKL.'VSSKK
+     $2KKV' 4KKKKK $1LJ$4 KKKKAL 'VKK
+     $2V' ' 'VKKKK $1LJ$4 KKKKV' ' 'V
+     $2.4MA.' 'VKK $1LJ$4 KKV' '.4Mb.
+   $4. $2KKKKKA.' 'V $1LJ$4 V' '.4KKKKK $3.
+ $4.4D $2KKKKKKKA.'' $1LJ$4 ''.4KKKKKKK $3FA.
+$4<QDD ++++++++++++  $3++++++++++++ GFD>
+ '$4VD $3KKKKKKKK'.. $2LJ $1..'KKKKKKKK $3FV
+   $4' $3VKKKKK'. .4 $2LJ $1K. .'KKKKKV $3'
+      $3'VK'. .4KK $2LJ $1KKA. .'KV'
+     $3A. . .4KKKK $2LJ $1KKKKA. . .4
+     $3KKA. 'KKKKK $2LJ $1KKKKK' .4KK
+     $3KKSSA. VKKK $2LJ $1KKKV .4SSKK
+              $2<><><><>
+               $2'MKKM'
+                 $2''

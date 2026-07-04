@@ -92,3 +92,46 @@ fn clean_lspci(desc: &str) -> String {
     }
     stripped.trim().to_string()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::clean_lspci;
+
+    #[test]
+    fn amd_prefers_marketing_name_over_vendor_tag() {
+        assert_eq!(
+            clean_lspci(
+                "Advanced Micro Devices, Inc. [AMD/ATI] Navi 31 [Radeon RX 7900 XTX] (rev c8)"
+            ),
+            "Radeon RX 7900 XTX"
+        );
+        assert_eq!(
+            clean_lspci("Advanced Micro Devices, Inc. [AMD/ATI] Rembrandt [Radeon 680M]"),
+            "Radeon 680M"
+        );
+    }
+
+    #[test]
+    fn amd_apu_without_marketing_bracket() {
+        assert_eq!(
+            clean_lspci("Advanced Micro Devices, Inc. [AMD/ATI] Raphael (rev c9)"),
+            "Raphael"
+        );
+    }
+
+    #[test]
+    fn nvidia_and_intel_unaffected() {
+        assert_eq!(
+            clean_lspci("NVIDIA Corporation TU106 [GeForce RTX 2060]"),
+            "GeForce RTX 2060"
+        );
+        assert_eq!(
+            clean_lspci("Intel Corporation CoffeeLake-H GT2 [UHD Graphics 630]"),
+            "UHD Graphics 630"
+        );
+        assert_eq!(
+            clean_lspci("Intel Corporation UHD Graphics 630"),
+            "UHD Graphics 630"
+        );
+    }
+}

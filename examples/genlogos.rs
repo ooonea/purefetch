@@ -1,8 +1,10 @@
 //! Generator for `src/logo.rs` from the ASCII-art files in `assets/logos/`.
 //!
 //! Each `assets/logos/<name>.txt` is:
-//!   line 1:  `COLOR: R;G;B`   (the logo's truecolor RGB)
-//!   line 2..: the ASCII art, one row per line
+//!   line 1:  `COLORS: <sgr> <sgr> ...`  (space-separated SGR params, one per color)
+//!   line 2..: the ASCII art; `$1`..`$9` select the Nth color (any text before the
+//!             first marker uses the first color). A literal `$` is any `$` not
+//!             followed by a digit.
 //!
 //! Add or edit a logo by changing the `.txt` file, then run:
 //!     cargo run --example genlogos
@@ -41,49 +43,67 @@ const ORDER: &[(&str, &[&str])] = &[
     ("tux", &["tux", "linux", "generic"]),
 ];
 
+/// One logo's data collected from its `.txt`, ready to emit into `logo.rs`.
+struct Entry {
+    const_name: String,
+    colors: Vec<String>,
+    art: Vec<String>,
+    aliases: &'static [&'static str],
+}
+
 fn main() {
     let root = std::env::args().nth(1).unwrap_or_else(|| ".".to_string());
 
-    let mut entries: Vec<(String, String, Vec<String>, &[&str])> = Vec::new();
+    let mut entries: Vec<Entry> = Vec::new();
     for &(name, aliases) in ORDER {
         let path = format!("{root}/assets/logos/{name}.txt");
-        let Some((color, art)) = read_logo(&path) else {
+        let Some((colors, art)) = read_logo(&path) else {
             eprintln!("WARN: missing {name}.txt, skipping");
             continue;
         };
-        entries.push((name.to_ascii_uppercase(), color, art, aliases));
+        entries.push(Entry {
+            const_name: name.to_ascii_uppercase(),
+            colors,
+            art,
+            aliases,
+        });
     }
 
     let mut out = String::from(HEADER);
 
-    for (const_name, color, _art, aliases) in &entries {
-        let pat = aliases
+    for e in &entries {
+        let pat = e
+            .aliases
             .iter()
             .map(|a| format!("\"{a}\""))
             .collect::<Vec<_>>()
             .join(" | ");
-        if const_name == "TUX" {
-            let _ = writeln!(out, "        {pat} => Logo {{ lines: TUX, sgr: TUX_SGR }},");
+        if e.const_name == "TUX" {
+            let _ = writeln!(
+                out,
+                "        {pat} => Logo {{ lines: TUX, colors: TUX_COLORS }},"
+            );
         } else {
             let _ = writeln!(
                 out,
-                "        {pat} => Logo {{ lines: {const_name}, sgr: \"{}\" }},",
-                to_sgr(color)
+                "        {pat} => Logo {{ lines: {}, colors: {} }},",
+                e.const_name,
+                colors_literal(&e.colors)
             );
         }
     }
     out.push_str("        _ => return None,\n    })\n}\n\n");
 
-    let tux_color = entries
+    let tux_colors = entries
         .iter()
-        .find(|(n, _, _, _)| n == "TUX")
-        .map(|(_, c, _, _)| c.clone())
-        .unwrap_or_else(|| "236;236;236".to_string());
-    let _ = writeln!(out, "const TUX_SGR: &str = \"{}\";\n", to_sgr(&tux_color));
+        .find(|e| e.const_name == "TUX")
+        .map(|e| colors_literal(&e.colors))
+        .unwrap_or_else(|| "&[\"38;2;236;236;236\"]".to_string());
+    let _ = writeln!(out, "const TUX_COLORS: &[&str] = {tux_colors};\n");
 
-    for (const_name, _color, art, _aliases) in &entries {
-        let _ = writeln!(out, "const {const_name}: &[&str] = &[");
-        for row in art {
+    for e in &entries {
+        let _ = writeln!(out, "const {}: &[&str] = &[", e.const_name);
+        for row in &e.art {
             let _ = writeln!(out, "    {},", rust_str(row));
         }
         out.push_str("];\n\n");
@@ -96,15 +116,15 @@ fn main() {
     println!("wrote src/logo.rs: {} logos", entries.len());
 }
 
-/// Parse a `<name>.txt`: the `COLOR:` line plus the art rows (trailing blank
-/// rows trimmed).
-fn read_logo(path: &str) -> Option<(String, Vec<String>)> {
+/// Parse a `<name>.txt`: the `COLORS:` line (space-separated SGR params) plus the
+/// art rows (trailing blank rows trimmed).
+fn read_logo(path: &str) -> Option<(Vec<String>, Vec<String>)> {
     let text = fs::read_to_string(path).ok()?;
-    let mut color = String::new();
+    let mut colors: Vec<String> = Vec::new();
     let mut art: Vec<String> = Vec::new();
     for line in text.split('\n') {
-        if let Some(c) = line.strip_prefix("COLOR:") {
-            color = c.trim().to_string();
+        if let Some(c) = line.strip_prefix("COLORS:") {
+            colors = c.split_whitespace().map(str::to_string).collect();
         } else {
             art.push(line.trim_end().to_string());
         }
@@ -112,18 +132,17 @@ fn read_logo(path: &str) -> Option<(String, Vec<String>)> {
     while art.last().is_some_and(|s| s.is_empty()) {
         art.pop();
     }
-    Some((color, art))
+    Some((colors, art))
 }
 
-/// Wrap an `R;G;B` triplet as a truecolor foreground SGR (`38;2;R;G;B`);
-/// pass through anything that already looks like SGR params.
-fn to_sgr(color: &str) -> String {
-    let color = color.trim();
-    if color.starts_with("38;") || color.starts_with("1;") {
-        color.to_string()
-    } else {
-        format!("38;2;{color}")
-    }
+/// Render a color list as a Rust `&[&str]` literal, e.g. `&["31", "37"]`.
+fn colors_literal(colors: &[String]) -> String {
+    let inner = colors
+        .iter()
+        .map(|c| format!("\"{c}\""))
+        .collect::<Vec<_>>()
+        .join(", ");
+    format!("&[{inner}]")
 }
 
 /// Escape a line as a Rust string literal.
@@ -135,10 +154,15 @@ const HEADER: &str = r#"//! Distro ASCII logos and selection.
 //!
 //! GENERATED by examples/genlogos.rs from assets/logos/*.txt.
 //! Edit the art files and re-run `cargo run --example genlogos`; do not edit by hand.
+//!
+//! The distro logo art is from neofetch and fastfetch (both MIT); see CREDITS.md.
 
 pub struct Logo {
     pub lines: &'static [&'static str],
-    pub sgr: &'static str,
+    /// SGR params for the logo's colors. The art selects them with `$1`..`$9`
+    /// markers (any text before the first marker uses the first color); resolved
+    /// in `main`. A literal `$` in the art is any `$` not followed by a digit.
+    pub colors: &'static [&'static str],
 }
 
 /// Resolve a logo selector ("auto", "debian", "none", ...) to a logo.
@@ -153,7 +177,7 @@ pub fn get(selector: &str) -> Option<Logo> {
     Some(
         known(&name)
             .or_else(|| known(&detect_distro()))
-            .unwrap_or(Logo { lines: TUX, sgr: TUX_SGR }),
+            .unwrap_or(Logo { lines: TUX, colors: TUX_COLORS }),
     )
 }
 

@@ -1,20 +1,18 @@
-COLOR: 21;166;225
-        'osssssssssssssssssssso'
+COLORS: 34
+        `osssssssssssssssssssso`
        .osssssssssssssssssssssso.
-      .+oossssssssssssssssssssoo+.
+      .+oooooooooooooooooooooooo+.
 
-  '+ssssssssssssssssss++ssssssssso+'
- -+ssssssssssssssssss+-  '+ssssssso+-
-'ossssssssssssssssss+.     .+sssssssso'
-.ossssssssssssssssss+'       'ossssssso.
-:osssssssssssssssssso.      .osssssssss:
-osssssssssssssssssss.        osssssssss+
-:sssssssssssssssssss.        ossssssss+:
-.ossssssssssssssssss.       .ossssssss+.
-'ossssssssssssssssss+'     '+sssssssso'
- -+sssssssssssssssss+-      -+ssssssss+-
-  '+ssssssssssssss++.      .+ssssso+'
 
-      .+oossssssssssssssssssssoo+.
-       .osssssssssssssssssssssso.
-        'osssssssssssssssssssso'
+  `::::::::::::::::::::::.         .:`
+ `+ssssssssssssssssss+:.`     `.:+ssso`
+.ossssssssssssssso/.       `-+ossssssso.
+ssssssssssssso/-`      `-/osssssssssssss
+.ossssssso/-`      .-/ossssssssssssssso.
+ `+sss+:.      `.:+ssssssssssssssssss+`
+  `:.         .::::::::::::::::::::::`
+
+
+      .+oooooooooooooooooooooooo+.
+       -osssssssssssssssssssssso-
+        `osssssssssssssssssssso`

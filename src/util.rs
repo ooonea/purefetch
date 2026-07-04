@@ -84,3 +84,28 @@ pub fn percent(part: u64, total: u64) -> u64 {
         ((part as f64 / total as f64) * 100.0).round() as u64
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{human_iec, percent};
+
+    #[test]
+    fn iec_units_and_rounding() {
+        assert_eq!(human_iec(0), "0 B");
+        assert_eq!(human_iec(512), "512 B");
+        assert_eq!(human_iec(1024), "1.00 KiB");
+        assert_eq!(human_iec(1536), "1.50 KiB");
+        assert_eq!(human_iec(1024 * 1024), "1.00 MiB");
+        assert_eq!(human_iec(3u64 * 1024 * 1024 * 1024), "3.00 GiB");
+    }
+
+    #[test]
+    fn percent_rounds_and_guards_zero() {
+        assert_eq!(percent(0, 0), 0);
+        assert_eq!(percent(1, 0), 0);
+        assert_eq!(percent(1, 2), 50);
+        assert_eq!(percent(1, 3), 33);
+        assert_eq!(percent(2, 3), 67);
+        assert_eq!(percent(3, 3), 100);
+    }
+}

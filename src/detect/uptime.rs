@@ -47,3 +47,18 @@ fn plural(n: u64) -> &'static str {
         "s"
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::humanize;
+
+    #[test]
+    fn humanize_pluralizes_and_composes() {
+        assert_eq!(humanize(59), "0 mins"); // under a minute
+        assert_eq!(humanize(60), "1 min");
+        assert_eq!(humanize(3600), "1 hour");
+        assert_eq!(humanize(2 * 86_400), "2 days");
+        assert_eq!(humanize(90_000), "1 day, 1 hour");
+        assert_eq!(humanize(86_400 + 3600 + 60), "1 day, 1 hour, 1 min");
+    }
+}
