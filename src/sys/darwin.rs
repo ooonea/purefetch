@@ -11,9 +11,10 @@
 
 use super::DiskUsage;
 use std::ffi::c_void;
+use std::os::raw::c_ulong;
 
 extern "C" {
-    fn ioctl(fd: i32, request: u64, ...) -> i32;
+    fn ioctl(fd: i32, request: c_ulong, ...) -> i32;
     fn isatty(fd: i32) -> i32;
     fn gethostname(name: *mut u8, len: usize) -> i32;
     fn sysctlbyname(
@@ -26,9 +27,10 @@ extern "C" {
     fn mach_host_self() -> u32;
     fn host_statistics64(host: u32, flavor: i32, info: *mut i32, count: *mut u32) -> i32;
     fn proc_pidinfo(pid: i32, flavor: i32, arg: u64, buffer: *mut c_void, buffersize: i32) -> i32;
-    // On x86_64 the plain symbol is the legacy 32-bit-inode variant; the
-    // $INODE64 suffix selects the modern layout. arm64 only ever had that one.
-    #[cfg_attr(target_arch = "x86_64", link_name = "statfs$INODE64")]
+    // Everywhere but arm64 the plain symbol is the legacy 32-bit-inode
+    // variant; the $INODE64 suffix selects the modern layout (same cfg rule
+    // as the libc crate). arm64 only ever had the 64-bit one.
+    #[cfg_attr(not(target_arch = "aarch64"), link_name = "statfs$INODE64")]
     fn statfs(path: *const u8, buf: *mut Statfs) -> i32;
 }
 
@@ -90,7 +92,7 @@ struct Winsize {
 
 // _IOR('t', 104, struct winsize): darwin encodes direction and size into the
 // request, so the value differs from Linux's.
-const TIOCGWINSZ: u64 = 0x4008_7468;
+const TIOCGWINSZ: c_ulong = 0x4008_7468;
 
 /// Terminal width in columns (stdout), or 80 if it cannot be determined.
 pub fn term_width() -> usize {
@@ -320,7 +322,8 @@ const HOST_VM_INFO64: i32 = 4;
 // mach vm_statistics64 (xnu mach/vm_statistics.h), full current layout. Only
 // the leading fields are consumed; the tail keeps the buffer big enough that
 // any kernel revision fills at most what we pass. The u32 fields come in even
-// runs, so plain repr(C) matches xnu's pack(4) layout exactly.
+// runs, so every u64 already sits on an 8-byte offset and plain repr(C)
+// reproduces xnu's natural (aligned(8)) layout exactly.
 #[repr(C)]
 struct VmStatistics64 {
     free_count: u32,

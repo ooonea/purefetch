@@ -5,9 +5,12 @@
 //! pool via `/nix` instead, so the disk still reads as the real pool, not the
 //! few-MiB RAM root.
 use crate::detect::{Row, Rows};
-use crate::util::{cmd, human_iec, percent};
+#[cfg(target_os = "linux")]
+use crate::util::cmd;
+use crate::util::{human_iec, percent};
 
 pub fn detect() -> Rows {
+    #[cfg(target_os = "linux")]
     if let Some(row) = zfs_pool_row() {
         return vec![row];
     }
@@ -23,6 +26,7 @@ pub fn detect() -> Rows {
 }
 
 /// When `/` is ZFS, report its pool's allocated/size via `zpool list`.
+#[cfg(target_os = "linux")]
 fn zfs_pool_row() -> Option<Row> {
     let pool = zfs_root_pool()?;
     // `zpool list -Hp -o size,alloc <pool>` -> "<size>\t<alloc>" in bytes.
@@ -47,6 +51,7 @@ fn zfs_pool_row() -> Option<Row> {
 /// The ZFS pool the system lives on: `/`'s pool on a ZFS-root box, or — when `/`
 /// is tmpfs (impermanence) — the pool backing `/nix`, where the store actually
 /// lives. Returns the first component of the dataset name (`zroot/nix` -> `zroot`).
+#[cfg(target_os = "linux")]
 fn zfs_root_pool() -> Option<String> {
     let mounts = std::fs::read_to_string("/proc/mounts").ok()?;
     let pool_at = |want: &str| {
