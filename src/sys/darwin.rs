@@ -319,11 +319,7 @@ pub fn swap_usage() -> Option<(u64, u64)> {
 
 const HOST_VM_INFO64: i32 = 4;
 
-// mach vm_statistics64 (xnu mach/vm_statistics.h), full current layout. Only
-// the leading fields are consumed; the tail keeps the buffer big enough that
-// any kernel revision fills at most what we pass. The u32 fields come in even
-// runs, so every u64 already sits on an 8-byte offset and plain repr(C)
-// reproduces xnu's natural (aligned(8)) layout exactly.
+// mach vm_statistics64, revision 2 (xnu mach/vm_statistics.h).
 #[repr(C)]
 struct VmStatistics64 {
     free_count: u32,
@@ -351,38 +347,6 @@ struct VmStatistics64 {
     internal_page_count: u32,
     total_uncompressed_pages_in_compressor: u64,
     swapped_count: u64,
-    total_tag_storage_pages: u64,
-    nontag_pageable_tag_storage_pages: u64,
-    nontag_wired_tag_storage_pages: u64,
-    free_tag_storage_pages: u64,
-    tag_storing_tag_storage_pages: u64,
-    total_tagged_pages: u64,
-    resident_tagged_pages: u64,
-    compressed_tagged_pages: u64,
-    tagged_compressions: u64,
-    tagged_decompressions: u64,
-    compressed_tag_storage_bytes: u64,
-    speculative_pages_created: u64,
-    speculative_pages_activated: u64,
-    swap_count: u64,
-    empty_tag_storing_tag_storage_pages: u64,
-    executable_count: u64,
-    shared_region_count: u64,
-    boot_stolen_count: u64,
-    secluded_count: u64,
-    active_internal_count: u64,
-    inactive_internal_count: u64,
-    active_external_count: u64,
-    inactive_external_count: u64,
-    purgeable_pageable_count: u64,
-    purgeable_wired_count: u64,
-    background_internal_count: u64,
-    background_external_count: u64,
-    donated_count: u64,
-    realtime_count: u64,
-    max_mem_count: u64,
-    phantom_ghosts_found: u64,
-    phantom_ghosts_added: u64,
 }
 
 /// Memory (used, total) in bytes. Used follows vm_stat / Activity Monitor:
