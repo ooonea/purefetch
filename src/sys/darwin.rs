@@ -14,6 +14,7 @@ use std::ffi::c_void;
 use std::os::raw::c_ulong;
 
 extern "C" {
+    fn kill(pid: i32, signal: i32) -> i32;
     fn ioctl(fd: i32, request: c_ulong, ...) -> i32;
     fn isatty(fd: i32) -> i32;
     fn gethostname(name: *mut u8, len: usize) -> i32;
@@ -32,6 +33,12 @@ extern "C" {
     // as the libc crate). arm64 only ever had the 64-bit one.
     #[cfg_attr(not(target_arch = "aarch64"), link_name = "statfs$INODE64")]
     fn statfs(path: *const u8, buf: *mut Statfs) -> i32;
+}
+
+pub fn kill_process_group(pid: u32) {
+    unsafe {
+        kill(-(pid as i32), 9);
+    }
 }
 
 // struct statfs, 64-bit-inode variant (xnu __DARWIN_STRUCT_STATFS64) — 2168

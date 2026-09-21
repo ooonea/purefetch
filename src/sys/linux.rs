@@ -124,6 +124,17 @@ const SYS_STATFS: usize = 0;
 const TIOCGWINSZ: usize = 0x5413;
 const TCGETS: usize = 0x5401;
 
+pub fn kill_process_group(pid: u32) {
+    let nr = if cfg!(target_arch = "x86_64") {
+        62
+    } else {
+        129
+    };
+    unsafe {
+        syscall3(nr, (-(pid as isize)) as usize, 9, 0);
+    }
+}
+
 // struct statfs on x86_64 Linux (see `man 2 statfs`). 120 bytes.
 #[repr(C)]
 struct Statfs {

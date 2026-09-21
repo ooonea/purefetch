@@ -1,7 +1,56 @@
 //! Small helpers shared by the detection modules.
 #![allow(dead_code)]
 
-use std::process::Command;
+use std::io::{ErrorKind, Read};
+use std::os::fd::OwnedFd;
+use std::os::unix::{net::UnixStream, process::CommandExt};
+use std::process::{Command, Stdio};
+use std::time::{Duration, Instant};
+
+fn command_output(mut command: Command) -> Option<Vec<u8>> {
+    let (mut reader, writer) = UnixStream::pair().ok()?;
+    reader.set_nonblocking(true).ok()?;
+    let mut child = command
+        .stdin(Stdio::null())
+        .stdout(Stdio::from(OwnedFd::from(writer)))
+        .stderr(Stdio::null())
+        .process_group(0)
+        .spawn()
+        .ok()?;
+    drop(command);
+    let start = Instant::now();
+    let mut exited = false;
+    let output = (|| {
+        let mut output = Vec::new();
+        let mut buf = [0; 8192];
+        while start.elapsed() < Duration::from_secs(2) {
+            match reader.read(&mut buf) {
+                Ok(0) => {
+                    if let Some(status) = child.try_wait().ok()? {
+                        exited = true;
+                        return status.success().then_some(output);
+                    }
+                }
+                Ok(n) => {
+                    output.extend_from_slice(&buf[..n]);
+                    continue;
+                }
+                Err(e) if e.kind() == ErrorKind::Interrupted => continue,
+                Err(e) if e.kind() == ErrorKind::WouldBlock => {}
+                Err(_) => return None,
+            }
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        None
+    })();
+    if !exited {
+        // Descendants can outlive the command and retain its stdout.
+        crate::sys::kill_process_group(child.id());
+        let _ = child.kill();
+        let _ = child.wait();
+    }
+    output
+}
 
 /// Read a file and trim trailing whitespace/newline. `None` if missing or empty.
 pub fn read_trim(path: &str) -> Option<String> {
@@ -24,11 +73,10 @@ pub fn first_line(path: &str) -> Option<String> {
 /// non-zero exit, or empty output. Used only where no file-based source exists
 /// (e.g. `gnome-shell --version`).
 pub fn cmd(prog: &str, args: &[&str]) -> Option<String> {
-    let out = Command::new(prog).args(args).output().ok()?;
-    if !out.status.success() {
-        return None;
-    }
-    let s = String::from_utf8_lossy(&out.stdout).trim().to_string();
+    let mut command = Command::new(prog);
+    command.args(args);
+    let out = command_output(command)?;
+    let s = String::from_utf8_lossy(&out).trim().to_string();
     if s.is_empty() {
         None
     } else {
@@ -39,12 +87,8 @@ pub fn cmd(prog: &str, args: &[&str]) -> Option<String> {
 /// Run a shell command line via `sh -c` and return its first non-empty output
 /// line. Powers the `--exec` custom modules.
 pub fn sh(command: &str) -> Option<String> {
-    let out = Command::new("sh").arg("-c").arg(command).output().ok()?;
-    if !out.status.success() {
-        return None;
-    }
-    String::from_utf8_lossy(&out.stdout)
-        .lines()
+    let out = sh_raw(command)?;
+    out.lines()
         .map(str::trim)
         .find(|l| !l.is_empty())
         .map(str::to_string)
@@ -53,11 +97,10 @@ pub fn sh(command: &str) -> Option<String> {
 /// Run a shell command line via `sh -c` and return its full stdout verbatim.
 /// Used to generate a logo dynamically (`--logo-exec`).
 pub fn sh_raw(command: &str) -> Option<String> {
-    let out = Command::new("sh").arg("-c").arg(command).output().ok()?;
-    if !out.status.success() {
-        return None;
-    }
-    Some(String::from_utf8_lossy(&out.stdout).into_owned())
+    let mut shell = Command::new("sh");
+    shell.arg("-c").arg(command);
+    let out = command_output(shell)?;
+    Some(String::from_utf8_lossy(&out).into_owned())
 }
 
 /// Format a byte count with IEC units, e.g. `62.61 GiB`.
@@ -148,7 +191,32 @@ fn non_empty(s: &str) -> Option<String> {
 
 #[cfg(test)]
 mod tests {
-    use super::{human_iec, ioreg_string, ioreg_u64, percent};
+    use super::{cmd, human_iec, ioreg_string, ioreg_u64, percent};
+
+    #[test]
+    fn command_output_checks_status_and_drains_large_stdout() {
+        assert_eq!(
+            cmd("sh", &["-c", "printf good; printf ignored >&2"]).as_deref(),
+            Some("good")
+        );
+        assert_eq!(cmd("sh", &["-c", "printf bad; exit 1"]), None);
+        let output = cmd(
+            "sh",
+            &[
+                "-c",
+                "i=0; while [ $i -lt 10000 ]; do printf 1234567890; i=$((i+1)); done",
+            ],
+        );
+        assert_eq!(output.unwrap().len(), 100000);
+    }
+
+    #[test]
+    fn command_deadline_covers_descendants_holding_stdout() {
+        let start = std::time::Instant::now();
+        assert_eq!(cmd("sh", &["-c", "sleep 30 &"]), None);
+        assert_eq!(cmd("sh", &["-c", "exec sleep 30"]), None);
+        assert!(start.elapsed() < std::time::Duration::from_secs(10));
+    }
 
     #[test]
     fn iec_units_and_rounding() {

@@ -128,6 +128,9 @@ purefetch reads `$PUREFETCH_CONFIG`, then `~/.config/purefetch/config`, then
 `/etc/purefetch/config`. Command-line flags override the file; `--no-config`
 ignores it.
 
+External commands (including `exec` and `logo-exec`) have a two-second deadline;
+failed or timed-out commands produce no data.
+
 ## Detected info
 
 `Title (user@host)`, `OS`, `Host`, `Kernel`, `Uptime`, `Packages`, `Shell`,
@@ -153,8 +156,8 @@ skipped.
   (`/proc/<pid>/stat`+`comm` on Linux, `proc_pidinfo` on macOS), with
   environment-variable fallbacks (`$TERM`, `$TERM_PROGRAM`,
   `$KITTY_WINDOW_ID`, ...) for the terminal.
-- **Best-effort everywhere.** No module ever panics or blocks; missing data just
-  drops its line.
+- **Best-effort detection.** Missing data drops its line; external command
+  probes time out after two seconds.
 
 ## Architecture
 

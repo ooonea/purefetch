@@ -7,6 +7,7 @@
 //! * `hostname()` — the node name for the `user@host` title
 //! * `ppid_comm(pid)` — (parent pid, short command name), for the parent-chain
 //!   walks in `detect::{shell,terminal}`
+//! * `kill_process_group(pid)` — stop a command and its descendants
 //!
 //! Linux issues raw syscalls and reads `/proc` (no libc, no external crates);
 //! macOS binds `extern "C"` to libSystem — the only stable syscall ABI there —
