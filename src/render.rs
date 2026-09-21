@@ -76,11 +76,11 @@ pub fn render(logo: &[String], info: &[Line], pal: &Palette, term_width: usize) 
                 let mut value = v.clone();
                 if term_width > 0 {
                     let used = logo_w + gap + key_w + SEP.len();
-                    if term_width > used {
-                        let avail = term_width - used;
-                        if value.chars().count() > avail && avail > 1 {
-                            let cut: String = value.chars().take(avail - 1).collect();
-                            value = format!("{cut}…");
+                    let avail = term_width.saturating_sub(used);
+                    if value.chars().count() > avail {
+                        value = value.chars().take(avail.saturating_sub(1)).collect();
+                        if avail > 0 {
+                            value.push('…');
                         }
                     }
                 }
