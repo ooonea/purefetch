@@ -1,11 +1,6 @@
 //! WM: window manager / compositor, e.g. "Mutter (Wayland)".
 //!
-//! Strategy:
-//!  (a) scan running processes (/proc/*/comm) for a known standalone
-//!      WM/compositor and use it directly;
-//!  (b) otherwise map the current desktop environment ($XDG_CURRENT_DESKTOP)
-//!      to its default WM (GNOME's compositor lives inside the gnome-shell
-//!      process, so this mapping is the reliable path under GNOME/Wayland).
+//! Prefer the current desktop identity, then known compositor ancestors.
 //! The session type ($XDG_SESSION_TYPE) is appended as " (Wayland)"/" (X11)".
 use crate::detect::{Row, Rows};
 
@@ -46,12 +41,9 @@ pub fn detect() -> Rows {
 
 #[cfg(target_os = "linux")]
 pub fn detect() -> Rows {
-    let wm = match scan_processes() {
+    let wm = match de_to_wm().or_else(wm_ancestor) {
         Some(name) => name,
-        None => match de_to_wm() {
-            Some(name) => name,
-            None => return Vec::new(),
-        },
+        None => return Vec::new(),
     };
     let value = match session_suffix() {
         Some(sess) => format!("{wm} ({sess})"),
@@ -60,26 +52,21 @@ pub fn detect() -> Rows {
     vec![Row::val(value)]
 }
 
-/// Return the pretty name of the first known standalone WM found running.
 #[cfg(target_os = "linux")]
-fn scan_processes() -> Option<&'static str> {
-    let dir = std::fs::read_dir("/proc").ok()?;
-    for entry in dir.flatten() {
-        // Only numeric names are process directories.
-        let name = entry.file_name();
-        let Some(pid) = name.to_str() else { continue };
-        if pid.is_empty() || !pid.bytes().all(|b| b.is_ascii_digit()) {
-            continue;
+fn wm_ancestor() -> Option<&'static str> {
+    let mut pid = crate::sys::ppid_comm(std::process::id())?.0;
+    for _ in 0..64 {
+        if pid <= 1 {
+            break;
         }
-        let comm = match crate::util::read_trim(&format!("/proc/{pid}/comm")) {
-            Some(c) => c,
-            None => continue,
-        };
-        for (proc_name, pretty) in KNOWN_WMS {
-            if comm == *proc_name {
-                return Some(pretty);
-            }
+        let (parent, comm) = crate::sys::ppid_comm(pid)?;
+        if let Some((_, name)) = KNOWN_WMS.iter().find(|(name, _)| *name == comm) {
+            return Some(name);
         }
+        if parent == pid {
+            break;
+        }
+        pid = parent;
     }
     None
 }
@@ -98,7 +85,13 @@ fn de_to_wm() -> Option<&'static str> {
             "LXQT" => "Openbox",
             "CINNAMON" | "X-CINNAMON" => "Muffin",
             "MATE" => "Marco",
-            _ => continue,
+            _ => match KNOWN_WMS
+                .iter()
+                .find(|(name, _)| name.eq_ignore_ascii_case(&de))
+            {
+                Some((_, name)) => name,
+                None => continue,
+            },
         };
         return Some(wm);
     }
