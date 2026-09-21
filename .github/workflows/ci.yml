@@ -41,6 +41,42 @@ jobs:
       - name: Clippy
         run: cargo clippy --all-targets -- -D warnings
 
+  linux-emulated:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        include:
+          - target: aarch64-unknown-linux-musl
+            qemu: aarch64
+          - target: riscv64gc-unknown-linux-musl
+            qemu: riscv64
+          - target: loongarch64-unknown-linux-musl
+            qemu: loongarch64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - name: Prepare QEMU
+        run: |
+          cd "$RUNNER_TEMP"
+          apt-get download qemu-user-static
+          dpkg-deb -x qemu-user-static_*.deb qemu
+          echo "$RUNNER_TEMP/qemu/usr/bin" >> "$GITHUB_PATH"
+      - name: Test and run
+        env:
+          RUSTFLAGS: -C linker=rust-lld -C target-feature=+crt-static
+        run: |
+          target='${{ matrix.target }}'
+          runner='qemu-${{ matrix.qemu }}-static'
+          cargo --config "target.$target.runner=\"$runner\"" test --locked --target "$target"
+          cargo build --locked --release --target "$target"
+          "$runner" "target/$target/release/purefetch" --no-config --no-logo --modules os,kernel,memory,disk | tee out.txt
+          grep -E '^OS +.+' out.txt
+          grep -E '^Kernel +.+' out.txt
+          grep -E '^Memory +[0-9]' out.txt
+          grep -E '^Disk \(/\) +[0-9]' out.txt
+
   # Real macOS runs on both architectures: build, test, then execute the
   # binary and assert the darwin detection paths actually produce output.
   # macos-latest = arm64 (Apple Silicon); macos-26-intel = x86_64.
