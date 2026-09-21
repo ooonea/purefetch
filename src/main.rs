@@ -123,6 +123,7 @@ fn main() {
                 match args.get(i) {
                     Some(v) => match v.split_once(':') {
                         Some((label, cmd)) => {
+                            execs.retain(|(l, _)| !l.eq_ignore_ascii_case(label.trim()));
                             execs.push((label.trim().to_string(), cmd.to_string()))
                         }
                         None => fail("--exec expects \"Label:command\""),

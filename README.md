@@ -128,6 +128,9 @@ purefetch reads `$PUREFETCH_CONFIG`, then `~/.config/purefetch/config`, then
 `/etc/purefetch/config`. Command-line flags override the file; `--no-config`
 ignores it.
 
+Repeated `exec` labels are case-insensitive; the last definition wins, including
+when a command-line definition replaces one from the config file.
+
 External commands (including `exec` and `logo-exec`) have a two-second deadline;
 failed or timed-out commands produce no data.
 
