@@ -11,7 +11,8 @@ fetcher written **entirely in Rust with zero external crates**.
 
 No `libc`, no `sysinfo`, no `nix`, no color crate — nothing from crates.io.
 On **Linux**, the handful of syscalls that have no `std` wrapper (`statfs`,
-`ioctl` for the terminal size / tty check) are issued directly as raw syscalls
+`ioctl` for the terminal size / tty check, `kill` for command process groups)
+are issued directly as raw syscalls
 (x86_64, aarch64, riscv64 and loongarch64) via `core::arch::asm!`; everything
 else is `std` plus parsing of `/proc` and `/sys`. On **macOS**, where raw
 syscalls are not a stable ABI, the same platform layer binds `extern "C"`
@@ -169,7 +170,7 @@ src/
   main.rs        arg parsing, module ordering, title/separators/color blocks, dispatch
   sys/
     mod.rs       platform-layer API (disk_usage, term_width, hostname, ppid_comm, ...)
-    linux.rs     raw Linux syscalls (x86_64, aarch64, riscv64, loongarch64): statfs, ioctl
+    linux.rs     raw Linux syscalls (x86_64, aarch64, riscv64, loongarch64): statfs, ioctl, kill
     darwin.rs    libSystem FFI: statfs, sysctl, mach VM stats, libproc, CoreGraphics
   util.rs        file helpers, subprocess helper, byte/percent formatting
   color.rs       ANSI palette

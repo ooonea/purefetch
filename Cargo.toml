@@ -19,7 +19,7 @@ exclude = ["/assets/cover.png", "/.github", "/flake.nix", "/flake.lock"]
 name = "purefetch"
 path = "src/main.rs"
 
-# No [dependencies]: the whole tool is std + raw Linux syscalls (see src/sys.rs).
+# No [dependencies]: the whole tool is std + the platform layer in src/sys/.
 
 [profile.release]
 opt-level = "s"
