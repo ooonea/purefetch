@@ -1,4 +1,3 @@
-import errno
 import fcntl
 import os
 from pathlib import Path
@@ -57,15 +56,12 @@ class CliTests(unittest.TestCase):
                         stdout=slave, stderr=slave,
                     ) as process:
                         process.wait(timeout=10)
-                        os.close(slave)
-                        slave = None
+                        os.set_blocking(master, False)
                         data = b""
                         while True:
                             try:
                                 chunk = os.read(master, 4096)
-                            except OSError as error:
-                                if error.errno != errno.EIO:
-                                    raise
+                            except BlockingIOError:
                                 break
                             if not chunk:
                                 break
@@ -76,8 +72,7 @@ class CliTests(unittest.TestCase):
                         self.assertLessEqual(len(row), width)
                 finally:
                     os.close(master)
-                    if slave is not None:
-                        os.close(slave)
+                    os.close(slave)
 
     @unittest.skipUnless(sys.platform == "linux", "Linux session detection")
     def test_unrelated_compositor(self):
