@@ -23,6 +23,7 @@ cargo build --release
 cargo test
 cargo fmt --all -- --check
 cargo clippy --all-targets -- -D warnings
+python3 tests/cli.py ./target/release/purefetch
 ```
 
 ## Adding a distro logo

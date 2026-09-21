@@ -23,7 +23,9 @@ jobs:
         run: cargo build --release --verbose
 
       - name: Test
-        run: cargo test --verbose
+        run: |
+          cargo test --verbose
+          python3 tests/cli.py ./target/release/purefetch
 
       # Compile-check the non-x86_64 syscall paths (src/sys/linux.rs) without a cross linker.
       - name: Check (aarch64)
@@ -71,6 +73,7 @@ jobs:
           runner='qemu-${{ matrix.qemu }}-static'
           cargo --config "target.$target.runner=\"$runner\"" test --locked --target "$target"
           cargo build --locked --release --target "$target"
+          python3 tests/cli.py "$runner" "target/$target/release/purefetch"
           "$runner" "target/$target/release/purefetch" --no-config --no-logo --modules os,kernel,memory,disk | tee out.txt
           grep -E '^OS +.+' out.txt
           grep -E '^Kernel +.+' out.txt
@@ -96,7 +99,9 @@ jobs:
         run: cargo build --release --verbose
 
       - name: Test
-        run: cargo test --verbose
+        run: |
+          cargo test --verbose
+          python3 tests/cli.py ./target/release/purefetch
 
       # The ubuntu job never compiles the darwin cfg paths; lint them here.
       - name: Clippy
