@@ -6,6 +6,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-09-22
+
+### Added
+- Add a compact, 20-column NixOS ASCII logo, selected with `--logo nixos_small`.
+
 ## [0.2.2] - 2026-09-22
 
 ### Changed

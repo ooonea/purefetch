@@ -32,7 +32,7 @@ Trademark rights are not granted by the software or artwork licenses.
 | `manjaro` | Manjaro | [Source](https://manjaro.org/logo.svg) |
 | `mint` | Linux Mint | [Source](https://linuxmint.com/web/img/logo.svg) |
 | `mx` | MX Linux; Adrian and Dolphin_Oracle | [Source](https://raw.githubusercontent.com/MX-Linux/mx-packageinstaller/master/icons/logo.svg) |
-| `nixos` | Simon Frankau, Tim Cuthbertson and Daniel Baker; NixOS Marketing Team | [Source](https://brand.nixos.org/logos/nixos-logo-default-gradient-black-regular-horizontal-recommended.svg) |
+| `nixos`, `nixos_small` | Simon Frankau, Tim Cuthbertson and Daniel Baker; NixOS Marketing Team | [Source](https://brand.nixos.org/logos/nixos-logo-default-gradient-black-regular-horizontal-recommended.svg) |
 | `opensuse` | The openSUSE Project / SUSE | [Source](https://static.opensuse.org/mask-icon.svg) |
 | `pop` | System76 | [Source](https://raw.githubusercontent.com/system76/brand/master/Pop_OS%20branding/Pop_icon.svg) |
 | `rocky` | Rocky Enterprise Software Foundation | [Source](https://raw.githubusercontent.com/rocky-linux/brand-kit/main/Logomark.svg) |

@@ -29,6 +29,7 @@ const ORDER: &[(&str, &[&str])] = &[
     ("alpine", &["alpine"]),
     ("void", &["void"]),
     ("nixos", &["nixos"]),
+    ("nixos_small", &["nixos_small"]),
     ("gentoo", &["gentoo"]),
     ("endeavouros", &["endeavouros", "endeavour"]),
     ("kali", &["kali"]),

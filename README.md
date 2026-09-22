@@ -108,7 +108,7 @@ Bundled logos: `arch`, `ubuntu`, `fedora`, `debian`, `mint`, `manjaro`, `pop`,
 `elementary`, `zorin`, `artix`, `rocky`, `almalinux`, `centos`, `devuan`, `mx`,
 `garuda`, `macos` (alias `apple`), `tux` (and `none`). `auto` picks one from
 `/etc/os-release` on Linux (falling back to `tux`) and always the Apple logo
-on macOS.
+on macOS. Use `--logo nixos_small` for the compact, 20-column NixOS variant.
 
 ## Configuration
 
@@ -200,7 +200,7 @@ AI-generated. Noting it openly so you know how it was made.
 
 ## Credits
 
-The 25 bundled logos are traditional ASCII adaptations of the projects' original
+The bundled logos are traditional ASCII adaptations of the projects' original
 artwork. Sources, authors and separate artwork terms are listed in
 [CREDITS.md](CREDITS.md). Names and marks identify the reported operating system;
 they do not imply endorsement of purefetch.
