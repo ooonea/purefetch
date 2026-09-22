@@ -1,0 +1,14 @@
+purefetch program code is licensed under either the MIT License or the
+Apache License, Version 2.0, at your option. The full texts are in
+LICENSE-MIT and LICENSE-APACHE.
+
+Bundled artwork is not covered by that grant. The ASCII logos in
+assets/logos and their generated constants in src/logo.rs retain separate
+upstream terms and trademark rights, documented in CREDITS.md.
+
+The Debian adaptation is CC-BY-SA-3.0; the NixOS adaptation and the NixOS
+mark in project graphics are CC-BY-4.0; the MX adaptation is
+GPL-3.0-or-later. Full texts are in licenses/. Tux is used under Larry
+Ewing's attribution permission. Other brand marks retain their owners'
+rights and are used to identify the corresponding operating system.
+No trademark license or endorsement is implied.

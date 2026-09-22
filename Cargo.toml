@@ -1,13 +1,13 @@
 [package]
 name = "purefetch"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 rust-version = "1.70"
 authors = ["ooonea"]
 description = "A fast, fastfetch-style system information tool written entirely in Rust with zero dependencies"
 repository = "https://github.com/ooonea/purefetch"
 homepage = "https://github.com/ooonea/purefetch"
-license = "MIT OR Apache-2.0"
+license-file = "LICENSE"
 readme = "README.md"
 keywords = ["fetch", "fastfetch", "neofetch", "system-info", "cli"]
 categories = ["command-line-utilities"]

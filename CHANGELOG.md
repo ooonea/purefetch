@@ -6,6 +6,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-09-22
+
+### Changed
+- Replace all 25 bundled logos with traditional ASCII adaptations of the
+  original project artwork, with source attributions and separate artwork terms.
+- Refresh the README illustration and project cover.
+
 ## [0.2.1] - 2026-09-21
 
 ### Fixed
@@ -216,7 +223,8 @@ Initial release.
 - CLI: `--logo`, `--no-logo`, `--no-color`, `--version`, `--help`.
 - Dual-licensed MIT OR Apache-2.0.
 
-[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/ooonea/purefetch/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/ooonea/purefetch/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/ooonea/purefetch/compare/v0.1.12...v0.2.0
 [0.1.12]: https://github.com/ooonea/purefetch/compare/v0.1.11...v0.1.12

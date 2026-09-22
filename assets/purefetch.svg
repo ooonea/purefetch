@@ -1,79 +1,154 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="737" height="552" viewBox="0 0 737 552" font-family="ui-monospace, 'DejaVu Sans Mono', 'JetBrains Mono', monospace" font-size="15">
-<rect width="737" height="552" rx="10" fill="#282a36"/>
-<circle cx="20" cy="17" r="6" fill="#ff5f56"/>
-<circle cx="40" cy="17" r="6" fill="#ffbd2e"/>
-<circle cx="60" cy="17" r="6" fill="#27c93f"/>
-<text x="368" y="21" fill="#6272a4" text-anchor="middle" font-size="12">purefetch</text>
-<text x="22.0" y="71.0" fill="#d70751" xml:space="preserve">       _,met$$$$$gg.</text>
-<text x="292.0" y="71.0" fill="#9580ff" xml:space="preserve" font-weight="bold">ooonea@unicorn</text>
-<text x="22.0" y="91.0" fill="#d70751" xml:space="preserve">    ,g$$$$$$$$$$$$$$$P.</text>
-<text x="292.0" y="91.0" fill="#7970a9" xml:space="preserve">──────────────</text>
-<text x="22.0" y="111.0" fill="#d70751" xml:space="preserve">  ,g$$P&quot;     &quot;&quot;&quot;Y$$.&quot;.</text>
-<text x="292.0" y="111.0" fill="#9580ff" xml:space="preserve">OS      </text>
-<text x="364.0" y="111.0" fill="#f8f8f2" xml:space="preserve">  Debian GNU/Linux 13.5 (trixie) x86_64</text>
-<text x="22.0" y="131.0" fill="#d70751" xml:space="preserve"> ,$$P&#x27;              `$$$.</text>
-<text x="292.0" y="131.0" fill="#9580ff" xml:space="preserve">Host    </text>
-<text x="364.0" y="131.0" fill="#f8f8f2" xml:space="preserve">  ThinkPad P53 (20QQS0JD01)</text>
-<text x="22.0" y="151.0" fill="#d70751" xml:space="preserve">&#x27;,$$P       ,ggs.     `$$b:</text>
-<text x="292.0" y="151.0" fill="#9580ff" xml:space="preserve">Kernel  </text>
-<text x="364.0" y="151.0" fill="#f8f8f2" xml:space="preserve">  6.12.94+deb13-amd64</text>
-<text x="22.0" y="171.0" fill="#d70751" xml:space="preserve">`d$$&#x27;     ,$P&quot;&#x27;   .    $$$</text>
-<text x="292.0" y="171.0" fill="#9580ff" xml:space="preserve">Uptime  </text>
-<text x="364.0" y="171.0" fill="#f8f8f2" xml:space="preserve">  6 days, 15 hours, 36 mins</text>
-<text x="22.0" y="191.0" fill="#d70751" xml:space="preserve"> $$P      d$&#x27;     ,    $$P</text>
-<text x="292.0" y="191.0" fill="#9580ff" xml:space="preserve">Packages</text>
-<text x="364.0" y="191.0" fill="#f8f8f2" xml:space="preserve">  2477 (dpkg), 1 (flatpak)</text>
-<text x="22.0" y="211.0" fill="#d70751" xml:space="preserve"> $$:      $$.   -    ,d$$&#x27;</text>
-<text x="292.0" y="211.0" fill="#9580ff" xml:space="preserve">Shell   </text>
-<text x="364.0" y="211.0" fill="#f8f8f2" xml:space="preserve">  bash 5.2.37</text>
-<text x="22.0" y="231.0" fill="#d70751" xml:space="preserve"> $$;      Y$b._   _,d$P&#x27;</text>
-<text x="292.0" y="231.0" fill="#9580ff" xml:space="preserve">Display </text>
-<text x="364.0" y="231.0" fill="#f8f8f2" xml:space="preserve">  1920x1080 (eDP-1)</text>
-<text x="22.0" y="251.0" fill="#d70751" xml:space="preserve"> Y$$.    `.`&quot;Y$$$$P&quot;&#x27;</text>
-<text x="292.0" y="251.0" fill="#9580ff" xml:space="preserve">DE      </text>
-<text x="364.0" y="251.0" fill="#f8f8f2" xml:space="preserve">  GNOME 48.7</text>
-<text x="22.0" y="271.0" fill="#d70751" xml:space="preserve"> `$$b      &quot;-.__</text>
-<text x="292.0" y="271.0" fill="#9580ff" xml:space="preserve">WM      </text>
-<text x="364.0" y="271.0" fill="#f8f8f2" xml:space="preserve">  Mutter (Wayland)</text>
-<text x="22.0" y="291.0" fill="#d70751" xml:space="preserve">  `Y$$</text>
-<text x="292.0" y="291.0" fill="#9580ff" xml:space="preserve">Terminal</text>
-<text x="364.0" y="291.0" fill="#f8f8f2" xml:space="preserve">  kitty 0.41.1</text>
-<text x="22.0" y="311.0" fill="#d70751" xml:space="preserve">   `Y$$.</text>
-<text x="292.0" y="311.0" fill="#7970a9" xml:space="preserve">──────────────</text>
-<text x="22.0" y="331.0" fill="#d70751" xml:space="preserve">     `$$b.</text>
-<text x="292.0" y="331.0" fill="#9580ff" xml:space="preserve">CPU     </text>
-<text x="364.0" y="331.0" fill="#f8f8f2" xml:space="preserve">  Intel(R) Core(TM) i7-9850H @ 4.60 GHz</text>
-<text x="22.0" y="351.0" fill="#d70751" xml:space="preserve">       `Y$$b.</text>
-<text x="292.0" y="351.0" fill="#9580ff" xml:space="preserve">GPU     </text>
-<text x="364.0" y="351.0" fill="#f8f8f2" xml:space="preserve">  Quadro RTX 3000</text>
-<text x="22.0" y="371.0" fill="#d70751" xml:space="preserve">          `&quot;Y$b._</text>
-<text x="292.0" y="371.0" fill="#9580ff" xml:space="preserve">Memory  </text>
-<text x="364.0" y="371.0" fill="#f8f8f2" xml:space="preserve">  15.36 GiB / 62.61 GiB (25%)</text>
-<text x="22.0" y="391.0" fill="#d70751" xml:space="preserve">              `&quot;&quot;&quot;</text>
-<text x="292.0" y="391.0" fill="#9580ff" xml:space="preserve">Swap    </text>
-<text x="364.0" y="391.0" fill="#f8f8f2" xml:space="preserve">  0 B / 8.00 GiB (0%)</text>
-<text x="292.0" y="411.0" fill="#9580ff" xml:space="preserve">Disk (/)</text>
-<text x="364.0" y="411.0" fill="#f8f8f2" xml:space="preserve">  8.52 GiB / 489.54 GiB (2%)</text>
-<text x="292.0" y="431.0" fill="#7970a9" xml:space="preserve">──────────────</text>
-<text x="292.0" y="451.0" fill="#9580ff" xml:space="preserve">Locale  </text>
-<text x="364.0" y="451.0" fill="#f8f8f2" xml:space="preserve">  en_US.UTF-8</text>
-<text x="292.0" y="471.0" fill="#9580ff" xml:space="preserve">Battery </text>
-<text x="364.0" y="471.0" fill="#f8f8f2" xml:space="preserve">  76% (Not charging)</text>
-<text x="292.0" y="491.0" fill="#7970a9" xml:space="preserve">──────────────</text>
-<rect x="292.0" y="496.0" width="27.0" height="20.0" fill="#21222c"/>
-<rect x="319.0" y="496.0" width="27.0" height="20.0" fill="#ff5555"/>
-<rect x="346.0" y="496.0" width="27.0" height="20.0" fill="#50fa7b"/>
-<rect x="373.0" y="496.0" width="27.0" height="20.0" fill="#f1fa8c"/>
-<rect x="400.0" y="496.0" width="27.0" height="20.0" fill="#bd93f9"/>
-<rect x="427.0" y="496.0" width="27.0" height="20.0" fill="#ff79c6"/>
-<rect x="454.0" y="496.0" width="27.0" height="20.0" fill="#8be9fd"/>
-<rect x="481.0" y="496.0" width="27.0" height="20.0" fill="#f8f8f2"/>
-<rect x="292.0" y="516.0" width="27.0" height="20.0" fill="#6272a4"/>
-<rect x="319.0" y="516.0" width="27.0" height="20.0" fill="#ff6e6e"/>
-<rect x="346.0" y="516.0" width="27.0" height="20.0" fill="#69ff94"/>
-<rect x="373.0" y="516.0" width="27.0" height="20.0" fill="#ffffa5"/>
-<rect x="400.0" y="516.0" width="27.0" height="20.0" fill="#d6acff"/>
-<rect x="427.0" y="516.0" width="27.0" height="20.0" fill="#ff92df"/>
-<rect x="454.0" y="516.0" width="27.0" height="20.0" fill="#a4ffff"/>
-<rect x="481.0" y="516.0" width="27.0" height="20.0" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="910" height="432" viewBox="0 0 910 432">
+<rect width="910" height="432" rx="14" fill="#22212c"/>
+<path d="M0 52 H910" stroke="#393745"/>
+<circle cx="25" cy="26" r="6" fill="#ff9580"/>
+<circle cx="47" cy="26" r="6" fill="#ffff80"/>
+<circle cx="69" cy="26" r="6" fill="#8aff80"/>
+<text x="455.0" y="32" text-anchor="middle" fill="#b8b4c6" font-family="DejaVu Sans Mono" font-size="14">purefetch / NixOS</text>
+<text x="32" y="84" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">         </text>
+<text x="113" y="84" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">-##=      </text>
+<text x="203" y="84" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">=###+   =##-</text>
+<text x="311" y="84" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">            </text>
+<text x="419" y="84" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">ooonea@unicorn</text>
+<text x="32" y="102" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">         </text>
+<text x="113" y="102" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">*@@@*      </text>
+<text x="212" y="102" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">*@@@*.+@@@*</text>
+<text x="311" y="102" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">            </text>
+<text x="419" y="102" font-family="DejaVu Sans Mono" font-size="15" fill="#7970a9" xml:space="preserve">──────────────</text>
+<text x="32" y="120" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">          </text>
+<text x="122" y="120" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">+@@@#</text>
+<text x="167" y="120" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">.     </text>
+<text x="221" y="120" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">+@@@@@@@*</text>
+<text x="302" y="120" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">             </text>
+<text x="419" y="120" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">OS          </text>
+<text x="527" y="120" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  NixOS 26.05 (yarara) x86_64</text>
+<text x="32" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">      </text>
+<text x="86" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">*%%%%@@@@</text>
+<text x="167" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">%%%%%</text>
+<text x="212" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#4564a4" xml:space="preserve">%#</text>
+<text x="230" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#6496c8" xml:space="preserve">+</text>
+<text x="239" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">@@@@</text>
+<text x="275" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">@=</text>
+<text x="293" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">              </text>
+<text x="419" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Host        </text>
+<text x="527" y="138" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  ThinkPad P53 (20QQS0JD01)</text>
+<text x="32" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">    </text>
+<text x="68" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">.#@@@@@@@@@</text>
+<text x="167" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">@@@@@</text>
+<text x="212" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#4564a4" xml:space="preserve">@@%</text>
+<text x="239" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#5781b9" xml:space="preserve">+</text>
+<text x="248" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">%@@@-    </text>
+<text x="329" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">.*.</text>
+<text x="356" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">       </text>
+<text x="419" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Kernel      </text>
+<text x="527" y="156" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  6.18.52</text>
+<text x="32" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">     </text>
+<text x="77" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">.....</text>
+<text x="122" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">=###*</text>
+<text x="167" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#5781b9" xml:space="preserve">.</text>
+<text x="176" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">....</text>
+<text x="212" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#4564a4" xml:space="preserve">....</text>
+<text x="248" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">:%@@@=  </text>
+<text x="320" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">:%@%:</text>
+<text x="365" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">      </text>
+<text x="419" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Uptime      </text>
+<text x="527" y="174" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  11 hours, 4 mins</text>
+<text x="32" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">         </text>
+<text x="113" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">+@@</text>
+<text x="140" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">@#.          </text>
+<text x="257" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">.#@@</text>
+<text x="293" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">@=</text>
+<text x="311" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">-@@@%:</text>
+<text x="365" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">      </text>
+<text x="419" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Shell       </text>
+<text x="527" y="192" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  zsh 5.9.1</text>
+<text x="32" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve"> </text>
+<text x="41" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">....</text>
+<text x="77" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">...*@@@*.             </text>
+<text x="275" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">*@#</text>
+<text x="302" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#5781b9" xml:space="preserve">*</text>
+<text x="311" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">@@@%:...</text>
+<text x="383" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">    </text>
+<text x="419" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Display     </text>
+<text x="527" y="210" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  1920x1080 (eDP-1)</text>
+<text x="32" y="228" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">+@@@@@@</text>
+<text x="95" y="228" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">@@@@+                </text>
+<text x="284" y="228" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">=</text>
+<text x="293" y="228" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">*@@@@@@@@@+</text>
+<text x="392" y="228" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">   </text>
+<text x="419" y="228" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">DE          </text>
+<text x="527" y="228" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  umbriel</text>
+<text x="32" y="246" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">-#%%%%@@@@</text>
+<text x="122" y="246" font-family="DejaVu Sans Mono" font-size="15" fill="#6496c8" xml:space="preserve">+</text>
+<text x="131" y="246" font-family="DejaVu Sans Mono" font-size="15" fill="#4564a4" xml:space="preserve">*.              </text>
+<text x="275" y="246" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">.#@@@</text>
+<text x="320" y="246" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">%%%%%%#-</text>
+<text x="392" y="246" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">   </text>
+<text x="419" y="246" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Terminal    </text>
+<text x="527" y="246" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  kitty 0.48.2</text>
+<text x="32" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">    </text>
+<text x="68" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">:%@@@</text>
+<text x="113" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#6496c8" xml:space="preserve">+</text>
+<text x="122" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#4564a4" xml:space="preserve">%@%</text>
+<text x="149" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">.            </text>
+<text x="266" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#4564a4" xml:space="preserve">.</text>
+<text x="275" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">%@@@=</text>
+<text x="320" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">           </text>
+<text x="419" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">CPU         </text>
+<text x="527" y="264" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  Intel(R) Core(TM) i7-9850H @ 4.60 GHz</text>
+<text x="32" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">   </text>
+<text x="59" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">-@@@%:</text>
+<text x="113" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#4564a4" xml:space="preserve">-@</text>
+<text x="131" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">@@%:          </text>
+<text x="257" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#4564a4" xml:space="preserve">:%@@</text>
+<text x="293" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">@-</text>
+<text x="311" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">            </text>
+<text x="419" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">GPU         </text>
+<text x="527" y="282" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  Quadro RTX 3000</text>
+<text x="32" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">   </text>
+<text x="59" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">.*@#.  </text>
+<text x="122" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">:%@@@-</text>
+<text x="176" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">:---</text>
+<text x="212" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">----</text>
+<text x="248" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">-</text>
+<text x="257" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#5781b9" xml:space="preserve">*###</text>
+<text x="293" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#6496c8" xml:space="preserve">+</text>
+<text x="302" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">-----.</text>
+<text x="356" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">       </text>
+<text x="419" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Memory      </text>
+<text x="527" y="300" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  22.50 GiB / 62.61 GiB (36%)</text>
+<text x="32" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">     </text>
+<text x="77" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">=.    </text>
+<text x="131" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#4868ab" xml:space="preserve">.%@@</text>
+<text x="167" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">@*</text>
+<text x="185" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">#@@</text>
+<text x="212" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">@@@@@@</text>
+<text x="266" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">@@@@@@@@*</text>
+<text x="347" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">        </text>
+<text x="419" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Swap        </text>
+<text x="527" y="318" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  0 B / 15.65 GiB (0%)</text>
+<text x="32" y="336" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">           </text>
+<text x="131" y="336" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">*@@@@@*</text>
+<text x="194" y="336" font-family="DejaVu Sans Mono" font-size="15" fill="#71a6cd" xml:space="preserve">+*</text>
+<text x="212" y="336" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">****#@</text>
+<text x="266" y="336" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">@@@****=</text>
+<text x="338" y="336" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">         </text>
+<text x="419" y="336" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Disk (zroot)</text>
+<text x="527" y="336" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  293.35 GiB / 928.00 GiB (32%)</text>
+<text x="32" y="354" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">         </text>
+<text x="113" y="354" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">.#@@@#@@@#.     </text>
+<text x="257" y="354" font-family="DejaVu Sans Mono" font-size="15" fill="#74aed6" xml:space="preserve">+</text>
+<text x="266" y="354" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">@@@#.</text>
+<text x="311" y="354" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">            </text>
+<text x="419" y="354" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Locale      </text>
+<text x="527" y="354" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  C.UTF-8</text>
+<text x="32" y="372" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">         </text>
+<text x="113" y="372" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">#@@@= =@@@%.     </text>
+<text x="266" y="372" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">=@@@#</text>
+<text x="311" y="372" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">            </text>
+<text x="419" y="372" font-family="DejaVu Sans Mono" font-size="15" fill="#9580ff" xml:space="preserve">Battery     </text>
+<text x="527" y="372" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">  80% (Not charging)</text>
+<text x="32" y="390" font-family="DejaVu Sans Mono" font-size="15" fill="#f8f8f2" xml:space="preserve">         </text>
+<text x="113" y="390" font-family="DejaVu Sans Mono" font-size="15" fill="#4c6eb5" xml:space="preserve">.==:   -====      </text>
+<text x="275" y="390" font-family="DejaVu Sans Mono" font-size="15" fill="#77b5df" xml:space="preserve">:==.</text>
 </svg>

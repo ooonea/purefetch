@@ -1,18 +1,21 @@
-COLORS: 32 33 91 31 35 34
-                     ..'
-                 ,xNMM.
-               .OMMMMo
-               lMM"
-     .;loddo:.  .olloddol;.
-   cKMMMMMMMMMMNWMMMMMMMMMM0:
- $2.KMMMMMMMMMMMMMMMMMMMMMMMWd.
- XMMMMMMMMMMMMMMMMMMMMMMMX.
-$3;MMMMMMMMMMMMMMMMMMMMMMMM:
-:MMMMMMMMMMMMMMMMMMMMMMMM:
-$4.MMMMMMMMMMMMMMMMMMMMMMMMX.
- kMMMMMMMMMMMMMMMMMMMMMMMMWd.
- $5'XMMMMMMMMMMMMMMMMMMMMMMMMMMk
-  'XMMMMMMMMMMMMMMMMMMMMMMMMK.
-    $6kMMMMMMMMMMMMMMMMMMMMMMd
-     ;KMMMMMMMWXXWMMMMMMMk.
-       "cooc*"    "*coo'"
+COLORS: 38;2;220;225;232
+                       $1:+#%*
+                     $1-#@@@@-
+                    $1+@@@@@+
+                   $1:@@@@#:
+            $1...    :++-. ....
+        $1-*%@@@@@#+=--=*#@@@@@@%*-
+      $1=%@@@@@@@@@@@@@@@@@@@@@@@@@%=
+    $1.#@@@@@@@@@@@@@@@@@@@@@@@@@@%-
+    $1#@@@@@@@@@@@@@@@@@@@@@@@@@@*.
+   $1:@@@@@@@@@@@@@@@@@@@@@@@@@@%.
+   $1=@@@@@@@@@@@@@@@@@@@@@@@@@@*
+   $1=@@@@@@@@@@@@@@@@@@@@@@@@@@#
+   $1:@@@@@@@@@@@@@@@@@@@@@@@@@@@=
+    $1#@@@@@@@@@@@@@@@@@@@@@@@@@@@*.
+    $1:@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=
+     $1=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-
+      $1=@@@@@@@@@@@@@@@@@@@@@@@@@@@=
+       $1-%@@@@@@@@@@@@@@@@@@@@@@@%-
+        $1.*@@@@@@@@@@@@@@@@@@@@@*.
+          $1:+%@@%*=-:::-=*%@@%+:

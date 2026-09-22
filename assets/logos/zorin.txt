@@ -1,18 +1,19 @@
-COLORS: 34
-        `osssssssssssssssssssso`
-       .osssssssssssssssssssssso.
-      .+oooooooooooooooooooooooo+.
+COLORS: 38;2;21;166;240
+         $1-####################-
+        $1=@@@@@@@@@@@@@@@@@@@@@@=
+       $1+@@@@@@@@@@@@@@@@@@@@@@@@+
+       $1..........................
 
 
-  `::::::::::::::::::::::.         .:`
- `+ssssssssssssssssss+:.`     `.:+ssso`
-.ossssssssssssssso/.       `-+ossssssso.
-ssssssssssssso/-`      `-/osssssssssssss
-.ossssssso/-`      .-/ossssssssssssssso.
- `+sss+:.      `.:+ssssssssssssssssss+`
-  `:.         .::::::::::::::::::::::`
+  $1-%@@@@@@@@@@@@@@@@@#+:         :=*%-
+ $1=@@@@@@@@@@@@@@@%*-.        .-*%@@@@@=
+$1+@@@@@@@@@@@@@#=:         :+#@@@@@@@@@@+
+$1-%@@@@@@@@#+-         :=*@@@@@@@@@@@@@%-
+ $1:%@@@%*-.        .-*%@@@@@@@@@@@@@@@%:
+  $1.*=:         .-+##################*.
 
 
-      .+oooooooooooooooooooooooo+.
-       -osssssssssssssssssssssso-
-        `osssssssssssssssssssso`
+       $1--------------------------.
+       $1-@@@@@@@@@@@@@@@@@@@@@@@@-
+        $1:%@@@@@@@@@@@@@@@@@@@@%:
+         $1.====================.

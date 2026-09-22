@@ -40,7 +40,8 @@ python3 tests/cli.py ./target/release/purefetch
    in the art `$1`..`$9` switch to the Nth color, `$$` is a literal `$` (the
    fastfetch escape — fastfetch art files work verbatim), and any other `$` not
    followed by a digit 1-9 is also literal. Keep it ≤ 40 columns wide and
-   ~16–20 rows, and preserve leading spaces.
+   ~16–20 rows, use only printable ASCII characters, and preserve leading spaces.
+   Record the original artwork source, attribution and terms in `CREDITS.md`.
 2. Add `<id>` to the `ORDER` list in `examples/genlogos.rs` (with any aliases).
 3. Regenerate: `cargo run --example genlogos` — it rewrites `src/logo.rs` and runs
    `rustfmt` on it. Don't edit `src/logo.rs` by hand.

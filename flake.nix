@@ -31,6 +31,9 @@
               license = with pkgs.lib.licenses; [
                 mit
                 asl20
+                cc-by-40
+                cc-by-sa-30
+                gpl3Plus
               ];
               mainProgram = "purefetch";
               platforms = pkgs.lib.platforms.linux ++ pkgs.lib.platforms.darwin;

@@ -20,28 +20,27 @@ straight to libSystem (statfs, sysctl, mach VM statistics, libproc) — which
 Rust's `std` already links — so the crate stays free of external dependencies
 there too. It builds offline and has a trivial dependency graph.
 
-<p align="center"><img src="assets/purefetch.svg" alt="purefetch running on Debian" width="680"></p>
+<p align="center"><img src="assets/purefetch.svg" alt="purefetch running on NixOS" width="680"></p>
 
 ```
-       _,met$$$$$gg.          ooonea@unicorn
-    ,g$$$$$$$$$$$$$$$P.       ──────────────
-  ,g$$P"     """Y$$.".        OS        Debian GNU/Linux 13.5 (trixie) x86_64
- ,$$P'              `$$$.     Host      ThinkPad P53 (20QQS0JD01)
-',$$P       ,ggs.     `$$b:   Kernel    6.12.94+deb13-amd64
-`d$$'     ,$P"'   .    $$$    Uptime    6 days, 14 hours, 21 mins
- $$P      d$'     ,    $$P    Packages  2422 (dpkg), 1 (flatpak)
- $$:      $$.   -    ,d$$'    Shell     zsh 5.9
- $$;      Y$b._   _,d$P'      Display   1920x1080 (eDP-1)
- Y$$.    `.`"Y$$$$P"'         DE        GNOME 48.7
- `$$b      "-.__              WM        Mutter (Wayland)
-  `Y$$                        Terminal  kitty 0.41.1
-   `Y$$.                      CPU       Intel(R) Core(TM) i7-9850H @ 4.60 GHz
-     `$$b.                    GPU       Quadro RTX 3000
-       `Y$$b.                 Memory    15.46 GiB / 62.61 GiB (25%)
-          `"Y$b._             Swap      0 B / 8.00 GiB (0%)
-              `"""            Disk (/)  8.16 GiB / 491.48 GiB (2%)
-                             Locale    en_US.UTF-8
-                             Battery   76% (Not charging)
+         -##=      =###+   =##-            ooonea@unicorn
+         *@@@*      *@@@*.+@@@*            ──────────────
+          +@@@#.     +@@@@@@@*             OS            NixOS 26.05 (yarara) x86_64
+      *%%%%@@@@%%%%%%#+@@@@@=              Host          ThinkPad P53 (20QQS0JD01)
+    .#@@@@@@@@@@@@@@@@%+%@@@-    .*.       Kernel        6.18.52
+     .....=###*.........:%@@@=  :%@%:      Uptime        11 hours, 4 mins
+         +@@@#.          .#@@@=-@@@%:      Shell         zsh 5.9.1
+ .......*@@@*.             *@#*@@@%:...    Display       1920x1080 (eDP-1)
++@@@@@@@@@@+                =*@@@@@@@@@+   DE            umbriel
+-#%%%%@@@@+*.              .#@@@%%%%%%#-   Terminal      kitty 0.48.2
+    :%@@@+%@%.            .%@@@=           CPU           Intel(R) Core(TM) i7-9850H @ 4.60 GHz
+   -@@@%:-@@@%:          :%@@@-            GPU           Quadro RTX 3000
+   .*@#.  :%@@@-:--------*###+-----.       Memory        22.50 GiB / 62.61 GiB (36%)
+     =.    .%@@@*#@@@@@@@@@@@@@@@@*        Swap          0 B / 15.65 GiB (0%)
+           *@@@@@*+*****#@@@@****=         Disk (zroot)  293.35 GiB / 928.00 GiB (32%)
+         .#@@@#@@@#.     +@@@#.            Locale        C.UTF-8
+         #@@@= =@@@%.     =@@@#            Battery       80% (Not charging)
+         .==:   -====      :==.
 ```
 
 ## Install
@@ -201,19 +200,19 @@ AI-generated. Noting it openly so you know how it was made.
 
 ## Credits
 
-The bundled distribution logos are taken from **fastfetch** (which builds on
-**neofetch**'s logo set); both are MIT-licensed. Full attribution and the MIT
-notices are in [CREDITS.md](CREDITS.md). The distro logos are trademarks of their
-respective projects, used nominatively only to identify the OS being reported.
+The 25 bundled logos are traditional ASCII adaptations of the projects' original
+artwork. Sources, authors and separate artwork terms are listed in
+[CREDITS.md](CREDITS.md). Names and marks identify the reported operating system;
+they do not imply endorsement of purefetch.
 
 ## License
 
-Licensed under either of
+The program code is licensed under either of
 
 - MIT license ([LICENSE-MIT](LICENSE-MIT))
 - Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
 
-at your option.
+at your option. Logo artwork retains the separate terms in [CREDITS.md](CREDITS.md).
 
 Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
