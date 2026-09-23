@@ -23,24 +23,24 @@ there too. It builds offline and has a trivial dependency graph.
 <p align="center"><img src="assets/purefetch.svg" alt="purefetch running on NixOS" width="680"></p>
 
 ```
-         -##=      =###+   =##-            ooonea@unicorn
-         *@@@*      *@@@*.+@@@*            ──────────────
-          +@@@#.     +@@@@@@@*             OS            NixOS 26.05 (yarara) x86_64
-      *%%%%@@@@%%%%%%#+@@@@@=              Host          ThinkPad P53 (20QQS0JD01)
-    .#@@@@@@@@@@@@@@@@%+%@@@-    .*.       Kernel        6.18.52
-     .....=###*.........:%@@@=  :%@%:      Uptime        11 hours, 4 mins
-         +@@@#.          .#@@@=-@@@%:      Shell         zsh 5.9.1
- .......*@@@*.             *@#*@@@%:...    Display       1920x1080 (eDP-1)
-+@@@@@@@@@@+                =*@@@@@@@@@+   DE            umbriel
--#%%%%@@@@+*.              .#@@@%%%%%%#-   Terminal      kitty 0.48.2
-    :%@@@+%@%.            .%@@@=           CPU           Intel(R) Core(TM) i7-9850H @ 4.60 GHz
-   -@@@%:-@@@%:          :%@@@-            GPU           Quadro RTX 3000
-   .*@#.  :%@@@-:--------*###+-----.       Memory        22.50 GiB / 62.61 GiB (36%)
-     =.    .%@@@*#@@@@@@@@@@@@@@@@*        Swap          0 B / 15.65 GiB (0%)
-           *@@@@@*+*****#@@@@****=         Disk (zroot)  293.35 GiB / 928.00 GiB (32%)
-         .#@@@#@@@#.     +@@@#.            Locale        C.UTF-8
-         #@@@= =@@@%.     =@@@#            Battery       80% (Not charging)
-         .==:   -====      :==.
+         _==_      ====;   _==_            ooonea@unicorn
+         =@@@|      =@@@| ;@@@=            ──────────────
+          =@@@=      =@@@@@@@=             OS            NixOS 26.05 (yarara) x86_64
+      =====@@@@@======'@@@@@=              Host          ThinkPad P53 (20QQS0JD01)
+     =@@@@@@@@@@@@@@@@@_@@@@_    _|_       Kernel        6.18.52
+     `````_|||=`````````'@@@@_  _@@=_      Uptime        20 hours, 36 mins
+         _@@@=`           %@@@,_@@@@`      Shell         bash 5.3.9
+        ;@@@=              =@@_@@@@`       Display       1920x1080 (eDP-1)
+_@@@@@@@@@@=                *|@@@@@@@@@_   DE            umbriel
+'@@@@@@@@@=|                =@@@@@@@@@@'   Terminal      kitty 0.48.2
+    _@@@@'@@=_            _=@@@=           CPU           Intel(R) Core(TM) i7-9850H @ 4.60 GHz
+   _@@@@`'@@@@_          _@@@@'            GPU           Quadro RTX 3000
+    %@@`  '@@@@__________||||_______       Memory        34.32 GiB / 62.61 GiB (55%)
+     *     '@@@@_@@@@@@@@@@@@@@@@@=        Swap          0 B / 15.65 GiB (0%)
+           ;@@@@@|=======@@@@=====         Disk (zroot)  302.74 GiB / 928.00 GiB (33%)
+          =@@@@@@@|      =@@@=             Locale        C.UTF-8
+         =@@@= =@@@=_     '@@@=            Battery       77% (Not charging)
+         '=='   '====      '==`
 ```
 
 ## Install
