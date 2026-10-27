@@ -43,6 +43,20 @@ jobs:
       - name: Clippy
         run: cargo clippy --all-targets -- -D warnings
 
+  package-managers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-unknown-linux-musl
+      - name: Build static package probe
+        env:
+          RUSTFLAGS: -C linker=rust-lld -C target-feature=+crt-static
+        run: cargo build --locked --release --target x86_64-unknown-linux-musl
+      - name: Check native package databases
+        run: python3 tests/packages.py target/x86_64-unknown-linux-musl/release/purefetch
+
   linux-emulated:
     runs-on: ubuntu-24.04
     strategy:

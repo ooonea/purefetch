@@ -142,6 +142,14 @@ failed or timed-out commands produce no data.
 unavailable (e.g. `Battery` on a desktop, `Swap` with no swap) is silently
 skipped.
 
+The package module supports dpkg, RPM, pacman, apk, Portage, XBPS, Flatpak
+(applications), Snap, Homebrew, MacPorts and Nix. RPM, XBPS and Nix use native
+read-only queries with the same two-second deadline as other external probes.
+Nix reports versioned runtime closure outputs per system, default or user
+profile, including dependencies but excluding documentation and development
+outputs; it does not count every path left in the store. Profiles resolving to
+the same store path are queried once.
+
 ## Notable details
 
 - **Zero dependencies.** The whole tool is `std` + the platform layer in
