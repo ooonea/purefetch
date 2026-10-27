@@ -18,8 +18,10 @@ for image, manager, query in [
         ["docker", "run", "--rm", "--network=none", "-v", f"{binary}:/purefetch:ro",
          "--entrypoint", "/bin/sh", image, "-ec",
          f"{query}; /purefetch --no-config --no-logo --modules packages"],
-        capture_output=True, text=True, timeout=300, check=True,
+        capture_output=True, text=True, timeout=300,
     )
+    print(result.stderr, end="", file=sys.stderr)
+    assert result.returncode == 0, (image, result.returncode, result.stdout)
     expected, output = result.stdout.strip().split("\n", 1)
     count = int(expected)
     actual = re.search(rf"(\d+) \({manager}\)", output)

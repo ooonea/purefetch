@@ -55,7 +55,7 @@ class CliTests(unittest.TestCase):
             (state / "nix").mkdir(parents=True)
             (state / "nix/profile").symlink_to(profile, target_is_directory=True)
             helper = root / "nix-store"
-            helper.write_text('#!/bin/sh\n[ "$1" = --query ] && [ "$2" = --requisites ] && [ "$3" = ' + shlex.quote(str(profile)) + ' ] || exit 1\nprintf "/nix/store/hash-hello-2.12.1\\n/nix/store/hash-hello-2.12.1-doc\\n/nix/store/hash-source\\n"\n')
+            helper.write_text('#!/bin/sh\n[ "$1" = --query ] && [ "$2" = --requisites ] && [ "$3" = ' + shlex.quote(str(profile.resolve())) + ' ] || exit 1\nprintf "/nix/store/hash-hello-2.12.1\\n/nix/store/hash-hello-2.12.1-doc\\n/nix/store/hash-source\\n"\n')
             helper.chmod(0o755)
             output = self.run_fetch(
                 "--no-config", "--no-logo", "--modules", "packages",
