@@ -14,7 +14,7 @@ import time
 import unittest
 
 
-COMMAND = sys.argv[1:]
+COMMAND = [shutil.which(sys.argv[1]) or sys.argv[1], *sys.argv[2:]]
 
 
 class CliTests(unittest.TestCase):
