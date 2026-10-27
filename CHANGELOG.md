@@ -6,6 +6,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-10-27
+
+### Added
+- Detect RPM, pacman, apk, Portage and XBPS packages on Linux.
+- Report Nix package closures for system, default and user profiles on Linux and macOS.
+- Compare package counts with native queries on Fedora, Debian, Arch, Alpine, Void and Gentoo.
+
 ## [0.2.4] - 2026-09-23
 
 ### Changed
@@ -233,7 +240,8 @@ Initial release.
 - CLI: `--logo`, `--no-logo`, `--no-color`, `--version`, `--help`.
 - Dual-licensed MIT OR Apache-2.0.
 
-[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.2.4...HEAD
+[Unreleased]: https://github.com/ooonea/purefetch/compare/v0.2.5...HEAD
+[0.2.5]: https://github.com/ooonea/purefetch/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/ooonea/purefetch/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/ooonea/purefetch/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/ooonea/purefetch/compare/v0.2.1...v0.2.2
