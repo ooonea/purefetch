@@ -6,6 +6,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.6] - 2026-10-29
+
+### Added
+- Add the Asahi Linux logo and recognize Fedora Asahi Remix automatically.
+
 ## [0.2.5] - 2026-10-27
 
 ### Added
