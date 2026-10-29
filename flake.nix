@@ -1,5 +1,5 @@
 {
-  description = "purefetch — a fast, zero-dependency system information tool in Rust";
+  description = "purefetch — terminal system information for Linux and macOS, with zero crate dependencies";
 
   # Only nixpkgs — no flake-utils — to keep the dependency graph as small as the
   # tool's own (which is empty).
@@ -18,30 +18,29 @@
       forAll = f: nixpkgs.lib.genAttrs systems (system: f nixpkgs.legacyPackages.${system});
     in
     {
-      packages = forAll (
-        pkgs: rec {
-          purefetch = pkgs.rustPlatform.buildRustPackage {
-            pname = "purefetch";
-            version = (builtins.fromTOML (builtins.readFile ./Cargo.toml)).package.version;
-            src = self;
-            cargoLock.lockFile = ./Cargo.lock;
-            meta = {
-              description = "A fast, fastfetch-style system information tool written entirely in Rust with zero dependencies";
-              homepage = "https://github.com/ooonea/purefetch";
-              license = with pkgs.lib.licenses; [
-                mit
-                asl20
-                cc-by-40
-                cc-by-sa-30
-                gpl3Plus
-              ];
-              mainProgram = "purefetch";
-              platforms = pkgs.lib.platforms.linux ++ pkgs.lib.platforms.darwin;
-            };
+      packages = forAll (pkgs: rec {
+        purefetch = pkgs.rustPlatform.buildRustPackage {
+          pname = "purefetch";
+          version = (builtins.fromTOML (builtins.readFile ./Cargo.toml)).package.version;
+          src = self;
+          cargoLock.lockFile = ./Cargo.lock;
+          meta = {
+            description = "Customizable terminal system information for Linux and macOS, written in Rust with zero crate dependencies";
+            homepage = "https://github.com/ooonea/purefetch";
+            license = with pkgs.lib.licenses; [
+              mit
+              asl20
+              cc-by-40
+              cc-by-sa-30
+              cc-by-sa-40
+              gpl3Plus
+            ];
+            mainProgram = "purefetch";
+            platforms = pkgs.lib.platforms.linux ++ pkgs.lib.platforms.darwin;
           };
-          default = purefetch;
-        }
-      );
+        };
+        default = purefetch;
+      });
 
       apps = forAll (pkgs: {
         default = {

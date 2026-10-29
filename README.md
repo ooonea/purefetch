@@ -6,19 +6,23 @@
 ![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)
 ![Dependencies: 0](https://img.shields.io/badge/dependencies-0-brightgreen.svg)
 
-A small, fast system-information tool — a [fastfetch](https://github.com/fastfetch-cli/fastfetch)-style
-fetcher written **entirely in Rust with zero external crates**.
+Your system at a glance, from the terminal. **purefetch** pairs a distribution
+logo with a compact overview of your hardware, desktop and resource usage.
+It runs on Linux and macOS and is written in Rust with **zero crate dependencies**.
 
-No `libc`, no `sysinfo`, no `nix`, no color crate — nothing from crates.io.
-On **Linux**, the handful of syscalls that have no `std` wrapper (`statfs`,
-`ioctl` for the terminal size / tty check, `kill` for command process groups)
-are issued directly as raw syscalls
-(x86_64, aarch64, riscv64 and loongarch64) via `core::arch::asm!`; everything
-else is `std` plus parsing of `/proc` and `/sys`. On **macOS**, where raw
-syscalls are not a stable ABI, the same platform layer binds `extern "C"`
-straight to libSystem (statfs, sysctl, mach VM statistics, libproc) — which
-Rust's `std` already links — so the crate stays free of external dependencies
-there too. It builds offline and has a trivial dependency graph.
+- **Make it yours.** Choose the information and its order, select a bundled logo,
+  or supply your own artwork and command output.
+- **Across systems.** Linux on x86_64, ARM64, RISC-V64 and LoongArch64;
+  macOS on Apple Silicon and Intel.
+- **Useful details.** Native package counts, Nix profile closures, ZFS pool usage
+  and macOS memory and APFS reporting.
+- **Terminal friendly.** Colors adapt to redirected output, values fit the terminal
+  width, and external probes have a two-second deadline.
+
+Inspired by [fastfetch](https://github.com/fastfetch-cli/fastfetch).
+The implementation uses Rust's standard library, direct Linux syscalls and
+libSystem on macOS. Some information sources query installed system commands;
+zero crate dependencies does not mean zero external probes.
 
 <p align="center"><img src="assets/purefetch.svg" alt="purefetch running on NixOS" width="680"></p>
 
@@ -201,10 +205,10 @@ please keep the zero-dependency rule and run `cargo fmt` before submitting.
 
 ## Disclosure
 
-purefetch was built largely with **AI assistance** (Claude Code). The design was
-human-directed and every change was reviewed and tested — including running the
-tool on all four supported architectures under QEMU — but most of the code is
-AI-generated. Noting it openly so you know how it was made.
+purefetch was developed with **AI assistance** from Claude Code and OpenAI Codex,
+under human direction. Changes are reviewed and tested; CI includes native Linux
+x86_64 and both macOS architectures, Linux ARM64/RISC-V64/LoongArch64 execution
+under QEMU, and Rust 1.70 compatibility checks.
 
 ## Credits
 
