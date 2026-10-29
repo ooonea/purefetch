@@ -22,6 +22,7 @@ const ORDER: &[(&str, &[&str])] = &[
     ("arch", &["arch"]),
     ("ubuntu", &["ubuntu"]),
     ("fedora", &["fedora"]),
+    ("asahi", &["asahi", "asahi-fedora-remix"]),
     ("mint", &["mint"]),
     ("manjaro", &["manjaro"]),
     ("pop", &["pop"]),

@@ -18,6 +18,7 @@ Trademark rights are not granted by the software or artwork licenses.
 | `almalinux` | AlmaLinux OS Foundation | [Source](https://almalinux.org/branding/AlmaLinux%20Icon.svg) |
 | `alpine` | Alpine Linux | [Source](https://alpinelinux.org/alpinelinux-logo.svg) |
 | `arch` | Arch Linux / Thayer Williams | [Source](https://archlinux.org/static/logos/archlinux-logo-dark-scalable.svg) |
+| `asahi` | soundflora* and Hector Martin; copyright 2021 | [Source](https://github.com/AsahiLinux/artwork/blob/main/logos/svg/AsahiLinux_logomark.svg) |
 | `artix` | Artix Linux | [Source](https://artixlinux.org/favicons/safari-pinned-tab.svg?v=1550100245) |
 | `centos` | The CentOS Project | [Source](https://www.centos.org/assets/img/centos-symbol.svg) |
 | `debian` | Raul Silva; copyright 1999 Software in the Public Interest, Inc. | [Source](https://www.debian.org/logos/openlogo-nd.svg) |
@@ -49,6 +50,10 @@ omitted. Compound source images contribute only their logomark, without letterin
 
 ## Explicit artwork licenses and notices
 
+- **Asahi Linux:** logo design by soundflora*, edited by Hector Martin,
+  copyright 2021, from [AsahiLinux/artwork](https://github.com/AsahiLinux/artwork/tree/main/logos).
+  The ASCII adaptation is distributed under
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 - **Debian:** the open-use logo is copyright 1999 Software in the Public Interest,
   Inc., designed by Raul Silva. This ASCII adaptation uses the
   [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) option offered
@@ -66,7 +71,7 @@ omitted. Compound source images contribute only their logomark, without letterin
   [kernel.org notice](https://www.kernel.org/doc/Documentation/logo.txt) permits
   use with attribution to Larry Ewing as the original artist.
 
-Full copies of the CC BY 4.0, CC BY-SA 3.0 and GPL 3.0 texts are in `licenses/`.
+Full copies of the CC BY 4.0, CC BY-SA 3.0, CC BY-SA 4.0 and GPL 3.0 texts are in `licenses/`.
 
 ## Brand usage references
 

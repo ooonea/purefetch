@@ -103,12 +103,12 @@ purefetch [OPTIONS]
 Colors are disabled automatically when stdout is not a terminal (or when
 `NO_COLOR` is set), so `purefetch | cat` produces clean, unstyled text.
 
-Bundled logos: `arch`, `ubuntu`, `fedora`, `debian`, `mint`, `manjaro`, `pop`,
+Bundled logos: `arch`, `ubuntu`, `fedora`, `asahi`, `debian`, `mint`, `manjaro`, `pop`,
 `opensuse`, `alpine`, `void`, `nixos`, `gentoo`, `endeavouros`, `kali`,
 `elementary`, `zorin`, `artix`, `rocky`, `almalinux`, `centos`, `devuan`, `mx`,
 `garuda`, `macos` (alias `apple`), `tux` (and `none`). `auto` picks one from
 `/etc/os-release` on Linux (falling back to `tux`) and always the Apple logo
-on macOS. Use `--logo nixos_small` for the compact, 20-column NixOS variant.
+on macOS. Fedora Asahi Remix uses the Asahi logo. Use `--logo nixos_small` for the compact, 20-column NixOS variant.
 
 ## Configuration
 
