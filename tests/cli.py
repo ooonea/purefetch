@@ -25,6 +25,13 @@ class CliTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         return result.stdout
 
+    def test_asahi_remix_logo(self):
+        args = ("--no-config", "--no-color", "--modules", "-")
+        asahi = self.run_fetch(*args, "--logo", "asahi")
+        remix = self.run_fetch(*args, "--logo", "fedora-asahi-remix")
+        self.assertEqual(remix, asahi)
+        self.assertNotEqual(remix, self.run_fetch(*args, "--logo", "tux"))
+
     @unittest.skipUnless(sys.platform == "linux", "Linux package managers")
     def test_native_package_queries(self):
         with tempfile.TemporaryDirectory() as directory:

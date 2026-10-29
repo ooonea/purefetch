@@ -89,7 +89,7 @@ fn known(name: &str) -> Option<Logo> {
             lines: FEDORA,
             colors: &["38;2;81;162;218"],
         },
-        "asahi" | "asahi-fedora-remix" => Logo {
+        "asahi" | "asahi-fedora-remix" | "fedora-asahi-remix" => Logo {
             lines: ASAHI,
             colors: &[
                 "38;2;211;80;111",
